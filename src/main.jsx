@@ -5,6 +5,7 @@ import configureStore from './redux/store';
 import { Provider } from 'react-redux';
 
 let initialState = {
+    projects: []
 };
 
 let store = configureStore(initialState);

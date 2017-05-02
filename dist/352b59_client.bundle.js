@@ -2077,6 +2077,10 @@ var _skills = __webpack_require__(233);
 
 var _skills2 = _interopRequireDefault(_skills);
 
+var _projects = __webpack_require__(589);
+
+var _projects2 = _interopRequireDefault(_projects);
+
 var _reactRouterDom = __webpack_require__(215);
 
 var _createBrowserHistory = __webpack_require__(183);
@@ -2111,12 +2115,13 @@ var App = function (_Component) {
                 _react2.default.createElement(
                     'div',
                     { className: 'container-fluid' },
-                    _react2.default.createElement(_header2.default, null),
+                    _react2.default.createElement(_header2.default, { projects: this.props.projects }),
                     _react2.default.createElement(
                         'div',
                         { className: 'row' },
                         _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _home2.default }),
-                        _react2.default.createElement(_reactRouterDom.Route, { path: '/skills', component: _skills2.default })
+                        _react2.default.createElement(_reactRouterDom.Route, { path: '/skills', component: _skills2.default }),
+                        _react2.default.createElement(_reactRouterDom.Route, { path: '/projects', component: _projects2.default })
                     )
                 )
             );
@@ -2206,35 +2211,157 @@ var Header = function (_Component) {
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
-                'div',
-                { className: 'row' },
+                'nav',
+                { className: 'navbar navbar-default navbar-fixed-top navbar-inner', role: 'navigation' },
                 _react2.default.createElement(
                     'div',
-                    { className: 'col-sm-12' },
+                    { className: 'navbar-header' },
                     _react2.default.createElement(
-                        'h1',
-                        null,
-                        'Header Goes Here'
+                        'button',
+                        { type: 'button', className: 'navbar-toggle' },
+                        _react2.default.createElement(
+                            'span',
+                            { className: 'sr-only' },
+                            'Toggle navigation'
+                        ),
+                        _react2.default.createElement('span', { className: 'icon-bar' }),
+                        _react2.default.createElement('span', { className: 'icon-bar' }),
+                        _react2.default.createElement('span', { className: 'icon-bar' })
                     ),
                     _react2.default.createElement(
+                        _reactRouterDom.Link,
+                        { to: '/', className: 'navbar-brand' },
+                        'Philippe Donnette'
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'collapse navbar-collapse' },
+                    _react2.default.createElement(
                         'ul',
-                        { className: 'list-inline' },
+                        { className: 'nav navbar-nav' },
                         _react2.default.createElement(
                             'li',
                             null,
                             _react2.default.createElement(
-                                _reactRouterDom.Link,
-                                { to: '/' },
-                                'Home'
+                                _reactRouterDom.NavLink,
+                                { to: '/', className: 'navbar-brand' },
+                                _react2.default.createElement('i', { className: 'fa fa-home hidden-sm' }),
+                                ' Home'
                             )
                         ),
                         _react2.default.createElement(
                             'li',
                             null,
                             _react2.default.createElement(
-                                _reactRouterDom.Link,
+                                _reactRouterDom.NavLink,
                                 { to: '/skills' },
-                                'Skills'
+                                _react2.default.createElement('i', { className: 'glyphicon glyphicon-wrench hidden-sm' }),
+                                ' Skills'
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'li',
+                            null,
+                            _react2.default.createElement(
+                                _reactRouterDom.NavLink,
+                                { to: '/qualifications' },
+                                _react2.default.createElement('i', { className: 'glyphicon glyphicon-education hidden-sm' }),
+                                ' Qualifications'
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'li',
+                            null,
+                            _react2.default.createElement(
+                                _reactRouterDom.NavLink,
+                                { to: '/experience' },
+                                _react2.default.createElement('i', { className: 'fa fa-lightbulb-o hidden-sm' }),
+                                ' Experience'
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'li',
+                            { className: 'dropdown' },
+                            _react2.default.createElement(
+                                'a',
+                                { href: '#', className: 'dropdown-toggle', 'data-toggle': 'dropdown', role: 'button', 'aria-haspopup': 'true', 'aria-expanded': 'false' },
+                                _react2.default.createElement('i', { className: 'fa fa-suitcase hidden-sm' }),
+                                ' Projects ',
+                                _react2.default.createElement('b', { className: 'caret' })
+                            ),
+                            _react2.default.createElement(
+                                'ul',
+                                { className: 'dropdown-menu' },
+                                _react2.default.createElement(
+                                    'li',
+                                    null,
+                                    _react2.default.createElement(
+                                        _reactRouterDom.NavLink,
+                                        { to: '/projects' },
+                                        'View All'
+                                    )
+                                ),
+                                _react2.default.createElement('li', { className: 'divider' }),
+                                this.props.projects.map(function (project) {
+                                    return _react2.default.createElement(
+                                        'li',
+                                        null,
+                                        _react2.default.createElement(
+                                            _reactRouterDom.NavLink,
+                                            { to: { pathname: '/projects', query: { id: project.id, name: project.name } } },
+                                            project.name
+                                        )
+                                    );
+                                })
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'li',
+                            null,
+                            _react2.default.createElement(
+                                _reactRouterDom.NavLink,
+                                { to: '/about' },
+                                _react2.default.createElement('i', { className: 'fa fa-user hidden-sm' }),
+                                ' About Me'
+                            )
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'ul',
+                        { className: 'nav navbar-nav navbar-right dn-padding-r-10' },
+                        _react2.default.createElement(
+                            'li',
+                            { className: 'dropdown' },
+                            _react2.default.createElement(
+                                'a',
+                                { href: '#', 'data-toggle': 'dropdown', role: 'button', 'aria-haspopup': 'true', 'aria-expanded': 'false' },
+                                _react2.default.createElement('i', { className: 'fa fa-ellipsis-h' })
+                            ),
+                            _react2.default.createElement(
+                                'ul',
+                                { className: 'dropdown-menu' },
+                                _react2.default.createElement(
+                                    'li',
+                                    null,
+                                    _react2.default.createElement(
+                                        'a',
+                                        { href: this.props.gitHubUrl, target: '_blank' },
+                                        _react2.default.createElement('i', { className: 'fa fa-github' }),
+                                        ' Github'
+                                    )
+                                ),
+                                _react2.default.createElement('li', { className: 'divider' }),
+                                _react2.default.createElement(
+                                    'li',
+                                    null,
+                                    _react2.default.createElement(
+                                        'a',
+                                        { href: this.props.linkedinUrl, target: '_blank' },
+                                        _react2.default.createElement('i', { className: 'fa fa-linkedin-square' }),
+                                        ' Linkedin'
+                                    )
+                                )
                             )
                         )
                     )
@@ -2376,7 +2503,9 @@ var _reactRedux = __webpack_require__(150);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var initialState = {};
+var initialState = {
+    projects: []
+};
 
 var store = (0, _store2.default)(initialState);
 
@@ -6437,23 +6566,26 @@ let actions = {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_redux__ = __webpack_require__(98);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__skillsReducer__ = __webpack_require__(587);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__skillsReducer__ = __webpack_require__(573);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__projectsReducer__ = __webpack_require__(588);
+
 
 
 
 const rootReducer = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_redux__["combineReducers"])({
-    skills: __WEBPACK_IMPORTED_MODULE_1__skillsReducer__["a" /* default */]
+    skills: __WEBPACK_IMPORTED_MODULE_1__skillsReducer__["a" /* default */],
+    projects: __WEBPACK_IMPORTED_MODULE_2__projectsReducer__["a" /* default */]
 })
 
 /* harmony default export */ __webpack_exports__["a"] = (rootReducer);
 
 /***/ }),
 
-/***/ 587:
+/***/ 573:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-let skillsReducer = function(skills = {}, action) {
+let skillsReducer = function(skills = [], action) {
     switch(action.type) {
         default:
             return skills;
@@ -6461,6 +6593,72 @@ let skillsReducer = function(skills = {}, action) {
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (skillsReducer);
+
+/***/ }),
+
+/***/ 588:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+let projectsReducer = function(projects = [], action) {
+    switch(action.type) {
+        default:
+            return projects;
+    }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (projectsReducer);
+
+/***/ }),
+
+/***/ 589:
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(10);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Projects = function (_Component) {
+    _inherits(Projects, _Component);
+
+    function Projects() {
+        _classCallCheck(this, Projects);
+
+        return _possibleConstructorReturn(this, (Projects.__proto__ || Object.getPrototypeOf(Projects)).apply(this, arguments));
+    }
+
+    _createClass(Projects, [{
+        key: "render",
+        value: function render() {
+            return _react2.default.createElement(
+                "div",
+                { className: "jumbotron" },
+                "This is the Projects component!!"
+            );
+        }
+    }]);
+
+    return Projects;
+}(_react.Component);
+
+exports.default = Projects;
 
 /***/ }),
 
@@ -6695,4 +6893,4 @@ if ("development" !== 'production' && typeof isCrushed.name === 'string' && isCr
 /***/ })
 
 },[234]);
-//# sourceMappingURL=ceb6c6_client.bundle.js.map
+//# sourceMappingURL=352b59_client.bundle.js.map

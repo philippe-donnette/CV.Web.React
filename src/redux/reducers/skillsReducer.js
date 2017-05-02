@@ -1,4 +1,4 @@
-let skillsReducer = function(skills = {}, action) {
+let skillsReducer = function(skills = [], action) {
     switch(action.type) {
         default:
             return skills;

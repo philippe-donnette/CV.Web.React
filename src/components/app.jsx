@@ -5,6 +5,7 @@ import actions from '../redux/actions';
 import Header from './header';
 import Home from './home';
 import Skills from './skills';
+import Projects from './projects';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory';
 
@@ -15,10 +16,11 @@ class App extends Component {
         return (
             <Router history={history}>
                 <div className="container-fluid">
-                    <Header />
+                    <Header projects={this.props.projects} />
                     <div className="row">
                         <Route exact path="/" component={Home} />
                         <Route path="/skills" component={Skills} />
+                        <Route path="/projects" component={Projects} />
                     </div>
                 </div>
             </Router>
