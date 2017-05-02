@@ -14,7 +14,7 @@ describe("src/components/app.jsx", function() {
 
   beforeEach(() => {
     var initialState = {
-      items: ['one']
+      projects: []
     }
     store = configureMockStore()(initialState);
 
