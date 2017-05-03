@@ -12,8 +12,8 @@ console.log(path.resolve(__dirname, '/../node_modules'));
 module.exports = {
     devtool: 'source-map',
     entry: {
-        'client': './src/main',
-        'vendor': './src/vendor'
+        'vendor': './src/vendor',
+        'client': './src/main'
     },
     output: {
         path: __dirname + '/../dist/',

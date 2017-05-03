@@ -5,3 +5,6 @@ import 'bootstrap/dist/js/bootstrap';
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
 import 'babel-polyfill';
+import 'font-mfizz/font/font-mfizz.css';
+import './styles/css/devicons.css';
+import './styles/css/font-awesome.css';

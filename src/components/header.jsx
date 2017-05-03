@@ -6,17 +6,18 @@ class Header extends Component {
         return (
             <nav className="navbar navbar-default navbar-fixed-top navbar-inner" role="navigation">
                 <div className="navbar-header">
-                    <button type="button" className="navbar-toggle">
-                    <span className="sr-only">Toggle navigation</span>
-                    <span className="icon-bar"></span>
-                    <span className="icon-bar"></span>
-                    <span className="icon-bar"></span>
+                    <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" 
+                        data-target="#donola-navbar" aria-expanded="false">
+                        <span className="sr-only">Toggle navigation</span>
+                        <span className="icon-bar"></span>
+                        <span className="icon-bar"></span>
+                        <span className="icon-bar"></span>
                     </button>
                     <Link to="/" className="navbar-brand">Philippe Donnette</Link>
                 </div>
-                <div className="collapse navbar-collapse">
+                <div className="collapse navbar-collapse" id="donola-navbar">
                     <ul className="nav navbar-nav">
-                        <li><NavLink to="/" className="navbar-brand"><i className="fa fa-home hidden-sm"></i> Home</NavLink></li>
+                        <li className="hidden-sm hidden-xs"><NavLink to="/" className="navbar-brand"><i className="fa fa-home"></i> Home</NavLink></li>
                         <li><NavLink to="/skills"><i className="glyphicon glyphicon-wrench hidden-sm"></i> Skills</NavLink></li>
                         <li><NavLink to="/qualifications"><i className="glyphicon glyphicon-education hidden-sm"></i> Qualifications</NavLink></li>
                         <li><NavLink to="/experience"><i className="fa fa-lightbulb-o hidden-sm"></i> Experience</NavLink></li>
