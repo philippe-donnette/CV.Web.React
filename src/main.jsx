@@ -3,10 +3,9 @@ import { render } from 'react-dom';
 import App from './components/app';
 import configureStore from './redux/store';
 import { Provider } from 'react-redux';
-import './styles/donola.css';
 
 let initialState = {
-    projects: []
+    projects: [{ id: 1, name: 'Proj 1' }, { id: 2, name: 'Proj 2' }]
 };
 
 let store = configureStore(initialState);

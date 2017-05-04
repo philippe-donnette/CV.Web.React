@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink, Link } from 'react-router-dom';
+import ProjectNavLink from './navbar/project-navlink';
 
 class Header extends Component {
     render() {
@@ -30,7 +31,7 @@ class Header extends Component {
                                 <li className="divider"></li>
                                 {
                                     this.props.projects.map((project) => {
-                                        return <li><NavLink to={{ pathname: '/projects', query: { id: project.id, name: project.name } }}>{project.name}</NavLink></li>;
+                                        return <ProjectNavLink key={project.id} project={project}>{project.name}</ProjectNavLink>;
                                     })
                                 }
                             </ul>

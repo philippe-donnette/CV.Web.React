@@ -25,11 +25,6 @@ module.exports = {
         extensions: ['.jsx', '.js', '.json', '.css', '.scss', '.html'],
         modules: ['node_modules']
     },
-    // externals: {
-    //     'react/addons': true,
-    //     'react/lib/ExecutionEnvironment': true,
-    //     'react/lib/ReactContext': true
-    // },
     target: 'web',
     node: {
         __filename: true,
@@ -69,11 +64,11 @@ module.exports = {
                 })
             },
             {
-                test: /\.scss$/,
-                exclude: /node_modules/,
+                test: /\.(scss|less)$/,
+                // exclude: /node_modules/,
                 loaders: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
-                    use: ['css-loader', 'sass-loader']
+                    use: ['css-loader', 'sass-loader', 'less-loader']
                 })
             },
             {
