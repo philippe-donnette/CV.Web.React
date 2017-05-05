@@ -6,8 +6,6 @@ var CleanWebpackPlugin = require('clean-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 console.log('@@@@@@@@@ USING DEVELOPMENT @@@@@@@@@@@@@@@');
-console.log(__dirname);
-console.log(path.resolve(__dirname, '/../node_modules'));
 
 module.exports = {
     devtool: 'source-map',

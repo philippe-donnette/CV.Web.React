@@ -46,6 +46,7 @@
   "devDependencies": {},
   "scripts": {
     "build": "webpack",
+    "build:prod": "NODE_ENV='production' webpack -p",
     "serve": "cd dist && http-server -p 3000",
     "test": "mocha"
   },

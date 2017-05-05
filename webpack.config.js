@@ -1,4 +1,5 @@
 /// <binding ProjectOpened='Run - Development' />
+const webpack = require('webpack');
 
 var environment = (process.env.NODE_ENV || "development").trim();
 
