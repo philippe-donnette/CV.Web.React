@@ -7,7 +7,7 @@ if(process.env.NODE_ENV === 'production') {
 let initialState = {
     projects: [],
     settings: {
-        apiBaseURI: 'http://localhost:5057'
+        apiBaseURI: apiBaseURI
     }
 };
 

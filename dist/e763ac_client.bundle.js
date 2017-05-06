@@ -2159,7 +2159,7 @@ if(false) {
 let initialState = {
     projects: [],
     settings: {
-        apiBaseURI: 'http://localhost:5057'
+        apiBaseURI: apiBaseURI
     }
 };
 
@@ -7027,4 +7027,4 @@ if ("development" !== 'production' && typeof isCrushed.name === 'string' && isCr
 /***/ })
 
 },[241]);
-//# sourceMappingURL=c646e9_client.bundle.js.map
+//# sourceMappingURL=e763ac_client.bundle.js.map
