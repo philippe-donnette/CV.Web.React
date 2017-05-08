@@ -1,4 +1,4 @@
-let settingsReducer = function(settings = [], action) {
+let settingsReducer = function(settings = {}, action) {
     switch(action.type) {
         default:
             return settings;

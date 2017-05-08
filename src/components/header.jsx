@@ -44,7 +44,7 @@ class Header extends Component {
                                 <i className="fa fa-ellipsis-h"></i>
                             </a>
                             <ul className="dropdown-menu">
-                                <li><a href={this.props.gitHubUrl} target="_blank"><i className="fa fa-github"></i> Github</a></li>
+                                <li><a href={this.props.githubUrl} target="_blank"><i className="fa fa-github"></i> Github</a></li>
                                 <li className="divider"></li>
                                 <li><a href={this.props.linkedinUrl} target="_blank"><i className="fa fa-linkedin-square"></i> Linkedin</a></li>
                             </ul>

@@ -6,8 +6,6 @@ import { Provider } from 'react-redux';
 import ProjectService from './services/project-service';
 import initialState from './redux/initial-state';
 
-console.log(initialState.settings.apiBaseURI);
-
 let projectService = new ProjectService(initialState.settings.apiBaseURI);
 projectService.getProjects()
     .then((response) => {

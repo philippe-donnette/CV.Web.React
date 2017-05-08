@@ -5,6 +5,7 @@ if(process.env.NODE_ENV === 'production') {
 }
 
 let initialState = {
+    person: {},
     projects: [],
     settings: {
         apiBaseURI: apiBaseURI

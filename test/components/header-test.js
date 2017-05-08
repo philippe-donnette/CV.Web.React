@@ -7,15 +7,17 @@ import ProjectNavLink from '../../src/components/navbar/project-navlink';
 
 describe("src/components/header.jsx", function() {
   
-  let wrapper, shallowResult, projects; 
+  let wrapper, shallowResult, projects, githubUrl, linkedinUrl; 
 
   beforeEach(() => {
+    githubUrl = 'http://some-githuburl-passed-in-props';
+    linkedinUrl = 'http://some-linkedinurl-passed-in-props';
     projects = [
         { id: 'A1', name: 'ProjectA' },
         { id: 'B2', name: 'ProjectB' },
         { id: 'C3', name: 'ProjectC' }
     ];
-    shallowResult = shallow(<Header projects={projects} />);
+    shallowResult = shallow(<Header projects={projects} githubUrl={githubUrl} linkedinUrl={linkedinUrl} />);
   });
   
   it("renders correct component", () => {
@@ -53,6 +55,24 @@ describe("src/components/header.jsx", function() {
     projects.forEach((value) => {
         expect(projectNavLinks[value.id]).to.be.equal(value.name);
     });
+  });
+
+  it("matches a link url with githubUrl props", () => {
+    let found = false;
+    shallowResult.find('a').forEach((value) => { 
+      if (value.props().href === githubUrl)
+        found = true;
+    });
+    expect(found).to.be.equal(true);
+  });
+
+  it("matches a link url with linkedinUrl props", () => {
+    let found = false;
+    shallowResult.find('a').forEach((value) => { 
+      if (value.props().href === linkedinUrl)
+        found = true;
+    });
+    expect(found).to.be.equal(true);
   });
 
 });

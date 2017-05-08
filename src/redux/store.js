@@ -7,6 +7,6 @@ let finalCreateStore = compose(
     applyMiddleware(thunk, createLogger())
 )(createStore);
 
-export default function configureStore(initialState = { search: [] }) {
+export default function configureStore(initialState) {
     return finalCreateStore(rootReducer, initialState);
 }

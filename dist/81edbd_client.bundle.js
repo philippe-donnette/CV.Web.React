@@ -2157,6 +2157,7 @@ if(false) {
 }
 
 let initialState = {
+    person: {},
     projects: [],
     settings: {
         apiBaseURI: apiBaseURI
@@ -2188,7 +2189,7 @@ let finalCreateStore = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_redux__
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_redux__["applyMiddleware"])(__WEBPACK_IMPORTED_MODULE_3_redux_thunk___default.a, __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2_redux_logger__["createLogger"])())
 )(__WEBPACK_IMPORTED_MODULE_0_redux__["createStore"]);
 
-function configureStore(initialState = { search: [] }) {
+function configureStore(initialState) {
     return finalCreateStore(__WEBPACK_IMPORTED_MODULE_1__reducers__["a" /* default */], initialState);
 }
 
@@ -2392,7 +2393,7 @@ var Header = function (_Component) {
                                     null,
                                     _react2.default.createElement(
                                         'a',
-                                        { href: this.props.gitHubUrl, target: '_blank' },
+                                        { href: this.props.githubUrl, target: '_blank' },
                                         _react2.default.createElement('i', { className: 'fa fa-github' }),
                                         ' Github'
                                     )
@@ -2664,8 +2665,6 @@ var _initialState = __webpack_require__(233);
 var _initialState2 = _interopRequireDefault(_initialState);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-console.log(_initialState2.default.settings.apiBaseURI);
 
 var projectService = new _projectService2.default(_initialState2.default.settings.apiBaseURI);
 projectService.getProjects().then(function (response) {
@@ -6733,9 +6732,11 @@ let actions = {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_redux__ = __webpack_require__(98);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__skill_reducer__ = __webpack_require__(582);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__project_reducer__ = __webpack_require__(580);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__setting_reducer__ = __webpack_require__(581);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__skill_reducer__ = __webpack_require__(583);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__project_reducer__ = __webpack_require__(581);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__setting_reducer__ = __webpack_require__(582);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__person_reducer__ = __webpack_require__(580);
+
 
 
 
@@ -6744,7 +6745,8 @@ let actions = {
 const rootReducer = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_redux__["combineReducers"])({
     skills: __WEBPACK_IMPORTED_MODULE_1__skill_reducer__["a" /* default */],
     projects: __WEBPACK_IMPORTED_MODULE_2__project_reducer__["a" /* default */],
-    settings: __WEBPACK_IMPORTED_MODULE_3__setting_reducer__["a" /* default */]
+    settings: __WEBPACK_IMPORTED_MODULE_3__setting_reducer__["a" /* default */],
+    person: __WEBPACK_IMPORTED_MODULE_4__person_reducer__["a" /* default */]
 })
 
 /* harmony default export */ __webpack_exports__["a"] = (rootReducer);
@@ -6752,6 +6754,21 @@ const rootReducer = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_redux__["c
 /***/ }),
 
 /***/ 580:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+let personReducer = function(person = {}, action) {
+    switch(action.type) {
+        default:
+            return person;
+    }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (personReducer);
+
+/***/ }),
+
+/***/ 581:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6766,11 +6783,11 @@ let projectsReducer = function(projects = [], action) {
 
 /***/ }),
 
-/***/ 581:
+/***/ 582:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-let settingsReducer = function(settings = [], action) {
+let settingsReducer = function(settings = {}, action) {
     switch(action.type) {
         default:
             return settings;
@@ -6781,7 +6798,7 @@ let settingsReducer = function(settings = [], action) {
 
 /***/ }),
 
-/***/ 582:
+/***/ 583:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -7027,4 +7044,4 @@ if ("development" !== 'production' && typeof isCrushed.name === 'string' && isCr
 /***/ })
 
 },[241]);
-//# sourceMappingURL=e763ac_client.bundle.js.map
+//# sourceMappingURL=81edbd_client.bundle.js.map
