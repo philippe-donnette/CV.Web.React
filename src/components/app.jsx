@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import actions from '../redux/actions';
+import actions from '../redux/actions/index';
 import Header from './header';
 import Home from './home';
 import Skills from './skills';
@@ -12,6 +12,11 @@ import createBrowserHistory from 'history/createBrowserHistory';
 const history = createBrowserHistory();
 
 class App extends Component {
+
+    componentWillMount() {
+        this.props.actions.getProjects();
+    }
+
     render() {
         return (
             <Router history={history}>
