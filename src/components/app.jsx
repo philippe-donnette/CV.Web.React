@@ -11,17 +11,23 @@ import createBrowserHistory from 'history/createBrowserHistory';
 
 const history = createBrowserHistory();
 
-class App extends Component {
+export class App extends Component {
 
     componentWillMount() {
         this.props.actions.getProjects();
+        this.props.actions.getPerson();
     }
 
     render() {
         return (
             <Router history={history}>
                 <div className="container-fluid">
-                    <Header projects={this.props.projects} />
+                    <Header 
+                        projects={this.props.projects} 
+                        githubUrl={this.props.person.gitHubUrl} 
+                        linkedinUrl={this.props.person.linkedinUrl} 
+                        fullName={this.props.person.firstname + ' ' + this.props.person.lastname} 
+                    />
                     <div className="row">
                         <Route exact path="/" component={Home} />
                         <Route path="/skills" component={Skills} />

@@ -525,6 +525,24 @@ var matchPath = function matchPath(pathname) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__project_actions__ = __webpack_require__(579);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__settings_actions__ = __webpack_require__(580);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__person_actions__ = __webpack_require__(578);
+
+
+
+
+let actions = Object.assign({}, __WEBPACK_IMPORTED_MODULE_0__project_actions__["a" /* default */], __WEBPACK_IMPORTED_MODULE_1__settings_actions__["a" /* default */], __WEBPACK_IMPORTED_MODULE_2__person_actions__["a" /* default */]);
+
+/* harmony default export */ __webpack_exports__["default"] = (actions);
+
+/***/ }),
+
+/***/ 152:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Provider__ = __webpack_require__(523);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_connectAdvanced__ = __webpack_require__(212);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__connect_connect__ = __webpack_require__(524);
@@ -536,28 +554,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-
-/***/ }),
-
-/***/ 152:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-class ProjectService {
-    constructor(baseURI) {
-        this.baseURI = baseURI;
-    }
-
-    getProjects() {
-        let request = new Request(`${this.baseURI}/api/project/all`, {
-            mode: 'CORS',
-            method: 'GET'
-        });
-        return fetch(request);
-    }
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (ProjectService);
 
 /***/ }),
 
@@ -2072,6 +2068,7 @@ function warning(message) {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.App = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -2079,11 +2076,11 @@ var _react = __webpack_require__(9);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(151);
+var _reactRedux = __webpack_require__(152);
 
 var _redux = __webpack_require__(98);
 
-var _index = __webpack_require__(578);
+var _index = __webpack_require__(151);
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -2119,7 +2116,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var history = (0, _createBrowserHistory2.default)();
 
-var App = function (_Component) {
+var App = exports.App = function (_Component) {
     _inherits(App, _Component);
 
     function App() {
@@ -2132,6 +2129,7 @@ var App = function (_Component) {
         key: 'componentWillMount',
         value: function componentWillMount() {
             this.props.actions.getProjects();
+            this.props.actions.getPerson();
         }
     }, {
         key: 'render',
@@ -2142,7 +2140,12 @@ var App = function (_Component) {
                 _react2.default.createElement(
                     'div',
                     { className: 'container-fluid' },
-                    _react2.default.createElement(_header2.default, { projects: this.props.projects }),
+                    _react2.default.createElement(_header2.default, {
+                        projects: this.props.projects,
+                        githubUrl: this.props.person.gitHubUrl,
+                        linkedinUrl: this.props.person.linkedinUrl,
+                        fullName: this.props.person.firstname + ' ' + this.props.person.lastname
+                    }),
                     _react2.default.createElement(
                         'div',
                         { className: 'row' },
@@ -2201,7 +2204,7 @@ let initialState = {
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_redux__ = __webpack_require__(98);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__reducers__ = __webpack_require__(580);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__reducers__ = __webpack_require__(581);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_redux_logger__ = __webpack_require__(566);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_redux_logger___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_redux_logger__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_redux_thunk__ = __webpack_require__(567);
@@ -2286,7 +2289,7 @@ var Header = function (_Component) {
                     _react2.default.createElement(
                         _reactRouterDom.Link,
                         { to: '/', className: 'navbar-brand' },
-                        'Philippe Donnette'
+                        this.props.fullName
                     )
                 ),
                 _react2.default.createElement(
@@ -2658,7 +2661,7 @@ var _store = __webpack_require__(235);
 
 var _store2 = _interopRequireDefault(_store);
 
-var _reactRedux = __webpack_require__(151);
+var _reactRedux = __webpack_require__(152);
 
 var _initialState = __webpack_require__(234);
 
@@ -2666,26 +2669,7 @@ var _initialState2 = _interopRequireDefault(_initialState);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/* let projectService = new ProjectService(initialState.settings.apiBaseURI);
-projectService.getProjects()
-    .then((response) => {
-        return response.json();
-    })
-    .then((data) => {
-        initialState.projects = data;
-        let store = configureStore(initialState);
-        render(
-            <Provider store={store}>
-                <App/>
-            </Provider>,
-            document.getElementById('app')
-        );
-    })
-    .catch((error) => { throw (error); });*/
-
 var store = (0, _store2.default)(_initialState2.default);
-// import ProjectService from './services/project-service';
-
 (0, _reactDom.render)(_react2.default.createElement(
     _reactRedux.Provider,
     { store: store },
@@ -6730,15 +6714,40 @@ module.exports = function(module) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__project_actions__ = __webpack_require__(579);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__settings_actions__ = __webpack_require__(618);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_person_service__ = __webpack_require__(586);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(151);
 
 
 
-let actions = Object.assign({}, __WEBPACK_IMPORTED_MODULE_0__project_actions__["a" /* default */], __WEBPACK_IMPORTED_MODULE_1__settings_actions__["a" /* default */]);
+let personActions = {
+    loadPerson: function (person) {
+        return {
+            type: 'GET_PERSON',
+            person: person
+        }
+    },
+    fetchPerson: function (config) {
+        return (dispatch) => {
+            let personService = new __WEBPACK_IMPORTED_MODULE_0__services_person_service__["a" /* default */](config.apiBaseURI);
+            personService.getPerson()
+                .then((response) => {
+                    return response.json();
+                })
+                .then((data) => {
+                    dispatch(__WEBPACK_IMPORTED_MODULE_1__index__["default"].loadPerson(data));
+                })
+                .catch((error) => { throw (error); });
+        };
+    },
+    getPerson: function () {
+        return (dispatch, getState) => {
+            let config = getState().settings;
+            dispatch(__WEBPACK_IMPORTED_MODULE_1__index__["default"].fetchPerson(config));
+        };
+    }
+}
 
-/* harmony default export */ __webpack_exports__["default"] = (actions);
+/* harmony default export */ __webpack_exports__["a"] = (personActions);
 
 /***/ }),
 
@@ -6746,28 +6755,35 @@ let actions = Object.assign({}, __WEBPACK_IMPORTED_MODULE_0__project_actions__["
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_project_service__ = __webpack_require__(152);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_project_service__ = __webpack_require__(587);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(151);
+
 
 
 let projectActions = {
-    getProjects: function (projects) {
+    loadProjects: function (projects) {
         return {
             type: 'GET_PROJECTS',
             projects: projects
         }
     },
-    getProjects: function () {
-        return (dispatch, getState) => {
-            const { settings } = getSettings();
-            let projectService = new __WEBPACK_IMPORTED_MODULE_0__services_project_service__["a" /* default */](settings.apiBaseURI);
+    fetchProjects: function (config) {
+        return (dispatch) => {
+            let projectService = new __WEBPACK_IMPORTED_MODULE_0__services_project_service__["a" /* default */](config.apiBaseURI);
             projectService.getProjects()
                 .then((response) => {
                     return response.json();
                 })
                 .then((data) => {
-                    dispatch(getProjects(data));
+                    dispatch(__WEBPACK_IMPORTED_MODULE_1__index__["default"].loadProjects(data));
                 })
-                .catch((error) => { throw (error); });;    
+                .catch((error) => { throw (error); });
+        };
+    },
+    getProjects: function () {
+        return (dispatch, getState) => {
+            let config = getState().settings;
+            dispatch(__WEBPACK_IMPORTED_MODULE_1__index__["default"].fetchProjects(config));
         };
     }
 }
@@ -6780,11 +6796,27 @@ let projectActions = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+let settingsActions = {
+    getSettings: function () {
+        return {
+            type: 'GET_SETTINGS'
+        }
+    }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (settingsActions);
+
+/***/ }),
+
+/***/ 581:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_redux__ = __webpack_require__(98);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__skill_reducer__ = __webpack_require__(584);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__project_reducer__ = __webpack_require__(582);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__settings_reducer__ = __webpack_require__(617);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__person_reducer__ = __webpack_require__(581);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__skill_reducer__ = __webpack_require__(585);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__project_reducer__ = __webpack_require__(583);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__settings_reducer__ = __webpack_require__(584);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__person_reducer__ = __webpack_require__(582);
 
 
 
@@ -6802,12 +6834,14 @@ const rootReducer = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0_redux__["c
 
 /***/ }),
 
-/***/ 581:
+/***/ 582:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 let personReducer = function(person = {}, action) {
     switch(action.type) {
+        case 'GET_PERSON':
+            return action.person;
         default:
             return person;
     }
@@ -6817,14 +6851,14 @@ let personReducer = function(person = {}, action) {
 
 /***/ }),
 
-/***/ 582:
+/***/ 583:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 let projectsReducer = function(projects = [], action) {
     switch(action.type) {
         case 'GET_PROJECTS':
-            return projects;
+            return action.projects;
         default:
             return projects;
     }
@@ -6838,6 +6872,23 @@ let projectsReducer = function(projects = [], action) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+let settingsReducer = function(settings = {}, action) {
+    switch(action.type) {
+        case 'GET_SETTINGS':
+            return settings;
+        default:
+            return settings;
+    }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (settingsReducer);
+
+/***/ }),
+
+/***/ 585:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 let skillsReducer = function(skills = [], action) {
     switch(action.type) {
         default:
@@ -6846,6 +6897,50 @@ let skillsReducer = function(skills = [], action) {
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (skillsReducer);
+
+/***/ }),
+
+/***/ 586:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class PersonService {
+    constructor(baseURI) {
+        this.baseURI = baseURI;
+    }
+
+    getPerson() {
+        let request = new Request(`${this.baseURI}/api/person`, {
+            mode: 'CORS',
+            method: 'GET'
+        });
+        return fetch(request);
+    }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (PersonService);
+
+/***/ }),
+
+/***/ 587:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+class ProjectService {
+    constructor(baseURI) {
+        this.baseURI = baseURI;
+    }
+
+    getProjects() {
+        let request = new Request(`${this.baseURI}/api/project/all`, {
+            mode: 'CORS',
+            method: 'GET'
+        });
+        return fetch(request);
+    }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (ProjectService);
 
 /***/ }),
 
@@ -6914,40 +7009,6 @@ if (true) {
 
 module.exports = warning;
 
-
-/***/ }),
-
-/***/ 617:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-let settingsReducer = function(settings = {}, action) {
-    switch(action.type) {
-        case 'GET_SETTINGS':
-            return settings;
-        default:
-            return settings;
-    }
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (settingsReducer);
-
-/***/ }),
-
-/***/ 618:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-let settingsActions = {
-    getSettings: function () {
-        return {
-            type: 'GET_SETTINGS',
-            settings: settings
-        }
-    }
-}
-
-/* harmony default export */ __webpack_exports__["a"] = (settingsActions);
 
 /***/ }),
 
@@ -7114,4 +7175,4 @@ if ("development" !== 'production' && typeof isCrushed.name === 'string' && isCr
 /***/ })
 
 },[241]);
-//# sourceMappingURL=5914fb_client.bundle.js.map
+//# sourceMappingURL=9422d2_client.bundle.js.map

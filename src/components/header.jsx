@@ -14,7 +14,7 @@ class Header extends Component {
                         <span className="icon-bar"></span>
                         <span className="icon-bar"></span>
                     </button>
-                    <Link to="/" className="navbar-brand">Philippe Donnette</Link>
+                    <Link to="/" className="navbar-brand">{this.props.fullName}</Link>
                 </div>
                 <div className="collapse navbar-collapse" id="donola-navbar">
                     <ul className="nav navbar-nav">
