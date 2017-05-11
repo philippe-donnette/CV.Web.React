@@ -6875,7 +6875,7 @@ let projectsReducer = function(projects = [], action) {
 let settingsReducer = function(settings = {}, action) {
     switch(action.type) {
         case 'GET_SETTINGS':
-            return settings;
+            return action.settings;
         default:
             return settings;
     }
@@ -7175,4 +7175,4 @@ if ("development" !== 'production' && typeof isCrushed.name === 'string' && isCr
 /***/ })
 
 },[241]);
-//# sourceMappingURL=9422d2_client.bundle.js.map
+//# sourceMappingURL=276791_client.bundle.js.map

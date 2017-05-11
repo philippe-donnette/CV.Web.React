@@ -57,22 +57,17 @@ describe("src/components/header.jsx", function() {
     });
   });
 
-  it("matches a link url with githubUrl props", () => {
-    let found = false;
-    shallowResult.find('a').forEach((value) => { 
-      if (value.props().href === githubUrl)
-        found = true;
-    });
-    expect(found).to.be.equal(true);
-  });
+  it("matches social links with props", () => {
+    const links = shallowResult.find('a').reduce((links, link) => {
+      if(link.props().children[1] != undefined) {
+        links[link.props().children[1].trim()] = link.props().href;
+      }
+      return links;
+    }, {});
 
-  it("matches a link url with linkedinUrl props", () => {
-    let found = false;
-    shallowResult.find('a').forEach((value) => { 
-      if (value.props().href === linkedinUrl)
-        found = true;
-    });
-    expect(found).to.be.equal(true);
+    expect(links['Github']).to.be.equal(githubUrl);
+    expect(links['Linkedin']).to.be.equal(linkedinUrl);
+    expect(links['Projects']).to.be.equal('#');
   });
 
 });
