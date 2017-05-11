@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import actions from '../redux/actions/index';
 import Header from './header';
+import Footer from './footer';
 import Home from './home';
 import Skills from './skills';
 import Projects from './projects';
@@ -33,6 +34,10 @@ export class App extends Component {
                         <Route path="/skills" component={Skills} />
                         <Route path="/projects" component={Projects} />
                     </div>
+                    <Footer 
+                        fullName={this.props.person.firstname + ' ' + this.props.person.lastname} 
+                        role={this.props.person.occupation}
+                    />
                 </div>
             </Router>
         );
