@@ -28,9 +28,9 @@ describe("src/components/app.jsx", function() {
         getPerson: getPersonSpy
       };
       
-      var initialState = {
+      let initialState = {
         projects: []
-      }
+      };
       store = configureMockStore()(initialState);
 
       wrapper = ReactTestUtils.renderIntoDocument(

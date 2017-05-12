@@ -30,7 +30,7 @@ export class App extends Component {
                         fullName={this.props.person.firstname + ' ' + this.props.person.lastname} 
                     />
                     <div className="row">
-                        <Route exact path="/" component={Home} />
+                        <Route exact path="/" component={Home} person={this.props.person} />
                         <Route path="/skills" component={Skills} />
                         <Route path="/projects" component={Projects} />
                     </div>

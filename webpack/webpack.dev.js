@@ -96,7 +96,7 @@ module.exports = {
             { root: path.resolve(__dirname + '/../dist') }
         ),
         new CopyWebpackPlugin([
-            { from: './src/images/*.*', to: 'assets/', flatten: true }
+            { from: './src/images/**/*.*', to: 'assets/', flatten: true }
         ]),
         new ExtractTextPlugin('[name].bundle.css'),
         new HtmlWebpackPlugin({

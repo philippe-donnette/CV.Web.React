@@ -1,11 +1,46 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import actions from '../redux/actions/index';
 
-class Home extends Component {
+export class Home extends Component {
     render() {
+
+        let profileImage = undefined;
+        if (this.props.person.primaryImage !== undefined) {
+            profileImage = <img src={'./assets/' + this.props.person.primaryImage} className="dn-img-thumbnail img-circle center-block" />;
+        }
+        let homeImage = undefined;
+        if (this.props.person.homeImage !== undefined) {
+            homeImage = <img src={'./assets/' + this.props.person.homeImage} className="img-responsive center-block" />;
+        }
+
         return (
-            <div className="jumbotron">This is the Home component!!</div>            
+            <div className="row dn-intro">
+                <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 dn-intro-pic">
+                    {profileImage}
+                    <div className="dn-intro-text">
+                        <span className="dn-name">{this.props.person.occupation}</span>
+                        <hr className="dn-star-light" />
+                        <span className="dn-skills">{this.props.person.occupationMotto}</span>
+                    </div>
+                </div>
+                <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12 dn-intro-tag">
+                    {homeImage}
+                </div>
+            </div>
         );
     }
 }
 
-export default Home;
+function mapStateToProps(state) {
+    return state;
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: bindActionCreators(actions, dispatch)
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
