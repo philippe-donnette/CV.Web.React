@@ -18,7 +18,7 @@ class Header extends Component {
                 </div>
                 <div className="collapse navbar-collapse" id="donola-navbar">
                     <ul className="nav navbar-nav">
-                        <li className="hidden-sm hidden-xs"><NavLink to="/" className="navbar-brand"><i className="fa fa-home"></i> Home</NavLink></li>
+                        <li className="hidden-sm hidden-xs"><NavLink to="/"><i className="fa fa-home"></i> Home</NavLink></li>
                         <li><NavLink to="/skills"><i className="glyphicon glyphicon-wrench hidden-sm"></i> Skills</NavLink></li>
                         <li><NavLink to="/qualifications"><i className="glyphicon glyphicon-education hidden-sm"></i> Qualifications</NavLink></li>
                         <li><NavLink to="/experience"><i className="fa fa-lightbulb-o hidden-sm"></i> Experience</NavLink></li>

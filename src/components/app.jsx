@@ -29,7 +29,7 @@ export class App extends Component {
                         linkedinUrl={this.props.person.linkedinUrl} 
                         fullName={this.props.person.firstname + ' ' + this.props.person.lastname} 
                     />
-                    <div className="row">
+                    <div className="container">
                         <Route exact path="/" component={Home} person={this.props.person} />
                         <Route path="/skills" component={Skills} />
                         <Route path="/projects" component={Projects} />
