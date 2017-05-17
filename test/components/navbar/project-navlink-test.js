@@ -23,7 +23,7 @@ describe("src/components/navbar/project-navlink.jsx", function() {
   
   it("contains correct passed prop for NavLink", () => {
     let navLink = shallowResult.find(NavLink).props().to;
-    expect(navLink.pathname).to.be.equal('/projects');
+    expect(navLink.pathname).to.be.equal(`/projects/${project.name}/${project.id}`);
     expect(navLink.query.id).to.be.equal(project.id);
     expect(navLink.query.name).to.be.equal(project.name);
   });

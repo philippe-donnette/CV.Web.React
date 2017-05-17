@@ -6,12 +6,11 @@ import actions from '../redux/actions/index';
 export class Home extends Component {
     render() {
 
-        let profileImage = undefined;
-        if (this.props.person.primaryImage !== undefined) {
+        let profileImage, homeImage;
+        if (typeof this.props.person.primaryImage !== 'undefined') {
             profileImage = <img src={'./assets/' + this.props.person.primaryImage} className="dn-img-thumbnail img-circle center-block" />;
         }
-        let homeImage = undefined;
-        if (this.props.person.homeImage !== undefined) {
+        if (typeof this.props.person.homeImage !== 'undefined') {
             homeImage = <img src={'./assets/' + this.props.person.homeImage} className="img-responsive center-block" />;
         }
 

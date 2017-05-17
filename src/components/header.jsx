@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import ProjectNavLink from './navbar/project-navlink';
+// import HeaderNavLink from './navbar/header-navlink';
 
 class Header extends Component {
     render() {
@@ -18,16 +19,19 @@ class Header extends Component {
                 </div>
                 <div className="collapse navbar-collapse" id="donola-navbar">
                     <ul className="nav navbar-nav">
-                        <li className="hidden-sm hidden-xs"><NavLink to="/"><i className="fa fa-home"></i> Home</NavLink></li>
-                        <li><NavLink to="/skills"><i className="glyphicon glyphicon-wrench hidden-sm"></i> Skills</NavLink></li>
-                        <li><NavLink to="/qualifications"><i className="glyphicon glyphicon-education hidden-sm"></i> Qualifications</NavLink></li>
-                        <li><NavLink to="/experience"><i className="fa fa-lightbulb-o hidden-sm"></i> Experience</NavLink></li>
-                        <li className="dropdown">
+                        { 
+                            // <HeaderNavLink to="/" liClassName="hidden-sm hidden-xs"><i className="fa fa-home"></i> Home</HeaderNavLink> 
+                        }
+                        <li className="hidden-sm hidden-xs navlink-wrapper"><NavLink exact to="/"><i className="fa fa-home"></i> Home</NavLink></li>
+                        <li className="navlink-wrapper"><NavLink to="/skills"><i className="glyphicon glyphicon-wrench hidden-sm"></i> Skills</NavLink></li>
+                        <li className="navlink-wrapper"><NavLink to="/qualifications"><i className="glyphicon glyphicon-education hidden-sm"></i> Qualifications</NavLink></li>
+                        <li className="navlink-wrapper"><NavLink to="/experience"><i className="fa fa-lightbulb-o hidden-sm"></i> Experience</NavLink></li>
+                        <li className="dropdown navlink-wrapper">
                             <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                 <i className="fa fa-suitcase hidden-sm"></i> Projects <b className="caret"></b>
                             </a>
                             <ul className="dropdown-menu">
-                                <li><NavLink to="/projects">View All</NavLink></li>
+                                <li className="navlink-wrapper"><NavLink exact to="/projects">View All</NavLink></li>
                                 <li className="divider"></li>
                                 {
                                     this.props.projects.map((project) => {
@@ -36,7 +40,7 @@ class Header extends Component {
                                 }
                             </ul>
                         </li>
-                        <li><NavLink to="/about"><i className="fa fa-user hidden-sm"></i> About Me</NavLink></li>
+                        <li className="navlink-wrapper"><NavLink to="/about"><i className="fa fa-user hidden-sm"></i> About Me</NavLink></li>
                     </ul>
                     <ul className="nav navbar-nav navbar-right dn-padding-r-10">
                         <li className="dropdown">
