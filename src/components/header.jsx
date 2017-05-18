@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import ProjectNavLink from './navbar/project-navlink';
-// import HeaderNavLink from './navbar/header-navlink';
 
 class Header extends Component {
     render() {
@@ -19,9 +18,6 @@ class Header extends Component {
                 </div>
                 <div className="collapse navbar-collapse" id="donola-navbar">
                     <ul className="nav navbar-nav">
-                        { 
-                            // <HeaderNavLink to="/" liClassName="hidden-sm hidden-xs"><i className="fa fa-home"></i> Home</HeaderNavLink> 
-                        }
                         <li className="hidden-sm hidden-xs navlink-wrapper"><NavLink exact to="/"><i className="fa fa-home"></i> Home</NavLink></li>
                         <li className="navlink-wrapper"><NavLink to="/skills"><i className="glyphicon glyphicon-wrench hidden-sm"></i> Skills</NavLink></li>
                         <li className="navlink-wrapper"><NavLink to="/qualifications"><i className="glyphicon glyphicon-education hidden-sm"></i> Qualifications</NavLink></li>
