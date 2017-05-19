@@ -4,6 +4,7 @@ import { shallow } from 'enzyme';
 import { NavLink } from 'react-router-dom';
 import Skills from '../../src/components/skills';
 import Title from '../../src/components/header/title';
+import Breadcrumb from '../../src/components/header/breadcrumb';
 
 describe("src/components/skills.jsx", function() {
   
@@ -20,6 +21,11 @@ describe("src/components/skills.jsx", function() {
   it("renders Title component", () => {
     let titleComponent = shallowResult.find(Title);
     expect(titleComponent.length).to.be.equal(1);    
+  });
+
+  it("renders Breadcrumb component", () => {
+    let component = shallowResult.find(Breadcrumb);
+    expect(component.length).to.be.equal(1);    
   });
 
 });

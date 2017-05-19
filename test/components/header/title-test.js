@@ -1,7 +1,6 @@
 import React from 'react';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
-import { NavLink } from 'react-router-dom';
 import Title from '../../../src/components/header/title';
 
 describe("src/components/header/title.jsx", function() {
