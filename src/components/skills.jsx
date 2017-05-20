@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import Title from './header/title';
-import Breadcrumb from './header/breadcrumb';
+import PageHeader from './header/page-header';
 
 class Skills extends Component {
     render() {
@@ -9,14 +8,9 @@ class Skills extends Component {
         ];
 
         return (
-            <div className="row">
-                <div className="col-lg-6 col-md-4 col-sm-5 hidden-xs">
-                    <Title iconClass="glyphicon glyphicon-wrench">Skills</Title>
-                </div> 
-                <div className="col-lg-6 col-md-8 col-sm-7 col-xs-12">
-                    <Breadcrumb iconClass="glyphicon glyphicon-wrench" items={breadcrumbItems}>Skills</Breadcrumb>
-                </div>
-            </div>            
+            <div>
+                <PageHeader iconClass="glyphicon glyphicon-wrench" breadcrumbItems={breadcrumbItems}>Skills</PageHeader>
+            </div>
         );
     }
 }
