@@ -3,13 +3,18 @@ import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import Skills from '../../src/components/skills';
 import PageHeader from '../../src/components/header/page-header';
+import TagCloud from '../../src/components/tag-cloud/tag-cloud';
+import configureMockStore from 'redux-mock-store';
 
 describe("src/components/skills.jsx", function() {
   
-  let shallowResult, breadcrumbItems, props; 
+  let shallowResult, breadcrumbItems, props, settings, initialState, store; 
 
   beforeEach(() => {
-    shallowResult = shallow(<Skills />);
+    settings = { apiBaseURI: 'some-url' };
+    initialState = { settings: settings };
+    store = configureMockStore()(initialState);
+    shallowResult = shallow(<Skills store={store} />);
   });
   
   it("renders correct component", () => {
@@ -17,7 +22,12 @@ describe("src/components/skills.jsx", function() {
   });
 
   it("renders PageHeader component", () => {
-    let component = shallowResult.find(PageHeader);
+    let component = shallowResult.dive().find(PageHeader);
+    expect(component.length).to.be.equal(1);    
+  });
+
+  it("renders TagCloud component", () => {
+    let component = shallowResult.dive().find(TagCloud);
     expect(component.length).to.be.equal(1);    
   });
 
