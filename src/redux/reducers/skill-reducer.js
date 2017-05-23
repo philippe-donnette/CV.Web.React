@@ -1,7 +1,7 @@
 let skillsReducer = function(skills = [], action) {
     switch(action.type) {
         case 'GET_SKILLS':
-            return action.projects;
+            return action.skills;
         default:
             return skills;
     }

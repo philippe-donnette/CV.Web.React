@@ -9,7 +9,8 @@ let initialState = {
     projects: [],
     settings: {
         apiBaseURI: apiBaseURI
-    }
+    },
+    skills: []
 };
 
 export default initialState;

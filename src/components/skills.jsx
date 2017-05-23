@@ -3,24 +3,13 @@ import PageHeader from './header/page-header';
 import TagCloud from './tag-cloud/tag-cloud';
 import SkillService from '../services/skill-service';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import actions from '../redux/actions/index';
 
 class Skills extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            skills: []
-        };
-    }
     
-    componentDidMount() {
-        let skillService = new SkillService(this.props.settings.apiBaseURI);
-        skillService.getSkills()
-            .then((response) => {
-                return response.json();
-            })
-            .then((data) => {
-                this.setState({ skills: data });
-            });
+    componentWillMount() {
+        this.props.actions.getSkills();
     }
 
     render() {
@@ -32,7 +21,7 @@ class Skills extends Component {
             <div>
                 <PageHeader iconClass="glyphicon glyphicon-wrench" breadcrumbItems={breadcrumbItems}>Skills</PageHeader>
                 <div className="dn-skills-container">
-                    <TagCloud items={this.state.skills} isInContainer={false}></TagCloud>
+                    <TagCloud items={this.props.skills} isInContainer={false}></TagCloud>
                 </div>
             </div>
         );
@@ -41,8 +30,14 @@ class Skills extends Component {
 
 function mapStateToProps(state) {
     return { 
-        settings: state.settings 
+        skills: state.skills
     };
 }
 
-export default connect(mapStateToProps)(Skills);
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: bindActionCreators(actions, dispatch)
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Skills);
