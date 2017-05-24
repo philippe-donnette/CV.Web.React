@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import actions from '../redux/actions/index';
 
-class Skills extends Component {
+export class Skills extends Component {
     
     componentWillMount() {
         this.props.actions.getSkills();
