@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import SkillModal from './skill-modal';
 
 class TagCloud extends Component {
     
@@ -9,7 +10,7 @@ class TagCloud extends Component {
     render() {
         let cloudItems = this.props.items.map((item) => {
             return (
-                <li key={item.id} onClick={this.openTag.bind(this, item)} className="dn-tag">
+                <li key={item.id} onClick={this.openTag.bind(this, item)} className="dn-tag" data-toggle="modal" data-target="#skill-modal-id">
                     <i className={`dn-tag-icon-${item.weight} ${item.iconClass}`}></i>&nbsp;
                     <span className={`dn-tag-${item.weight}`}>{item.name}</span>
                 </li>
@@ -24,6 +25,7 @@ class TagCloud extends Component {
         return (
             <ul className={ulClass}>
                 {cloudItems}
+                <SkillModal skill={this.props.skill} />
             </ul>
         );
     }
