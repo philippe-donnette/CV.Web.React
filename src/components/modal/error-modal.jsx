@@ -10,7 +10,7 @@ class ErrorModal extends Component {
                 title={this.props.title} 
                 titleIconClass="glyphicon glyphicon-remove" 
                 modalId={this.props.modalId} 
-                modalLabel={this.props.modalLabel}>
+            >
                 {this.props.children}
             </Modal>
         );

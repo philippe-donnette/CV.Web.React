@@ -3,15 +3,13 @@ import ErrorModal from '../modal/error-modal';
 import Modal from '../modal/modal';
 
 class SkillModal extends Component {
-    
     render() {
         if (typeof this.props.skill !== 'undefined' && this.props.skill !== null) {
             const htmlDescription = { __html: this.props.skill.description };
             return (
                 <Modal 
                     modalId="skill-modal-id" 
-                    modalLabel="notSureIneedThat" 
-                    title={this.props.skill.Name} 
+                    title={this.props.skill.name} 
                     titleIconClass={this.props.skill.iconClass}
                 >    
                     <div className="row">
@@ -24,7 +22,7 @@ class SkillModal extends Component {
                             </ul>
                         </div>
                         <div className="col-lg-4 col-md-4 col-sm-12 col-xs-12 text-right">
-                            <i className="dn-icons-10x" className={this.props.skill.iconClass}></i>
+                            <i className={'dn-icons-10x ' + this.props.skill.iconClass}></i>
                         </div>
                     </div>
                     <div className="well" dangerouslySetInnerHTML={htmlDescription}>
@@ -34,7 +32,7 @@ class SkillModal extends Component {
             );
         } else {
             return (
-                <ErrorModal modalId="skill-modal-id" modalLabel="notSureIneedThat" title="Error">Skill not found</ErrorModal>
+                <ErrorModal modalId="skill-modal-id" title="Error">Skill not found</ErrorModal>
             );
         }
     }
