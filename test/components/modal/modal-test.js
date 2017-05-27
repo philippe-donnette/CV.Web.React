@@ -12,8 +12,8 @@ describe("src/components/modal/modal.jsx", function() {
 
       beforeEach(() => {
           props = { modalId: 'some-id', titleIconClass: 'ic-1', title: 'some title goes here' };
-          children = <div>This is some content</div>;
-          shallowResult = shallow(<Modal {...props} />);
+          children = (<div>This is some content</div>);
+          shallowResult = shallow(<Modal {...props}>{children}</Modal>);
       });
     
       afterEach(() => {
@@ -35,9 +35,11 @@ describe("src/components/modal/modal.jsx", function() {
           expect(shallowResult.find('h2').props().children[0].props.className).to.contain(props.titleIconClass);    
       });
 
-    //   it("should render children prop in div with class panel-body", () => {
-    //       expect(shallowResult.find('div').findWhere(x => x.props().className === 'panel-body').node.props.children).to.be.equal(children);    
-    //   }); + TEST a tag with data-dismiss + fix eslint $ issue
+      it("should render children prop in div with class panel-body", () => {
+          expect(shallowResult.find('div').findWhere(x => x.props().className === 'panel-body dn-modal-body').html()).to.contain(children.props.children);    
+      }); 
+      
+      // + TEST <a> tag with data-dismiss + fix eslint $ issue
 
   });
 
