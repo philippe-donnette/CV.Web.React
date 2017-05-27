@@ -39,7 +39,12 @@ describe("src/components/modal/modal.jsx", function() {
           expect(shallowResult.find('div').findWhere(x => x.props().className === 'panel-body dn-modal-body').html()).to.contain(children.props.children);    
       }); 
       
-      // + TEST <a> tag with data-dismiss + fix eslint $ issue
+      it("should have all <a> tag with className dn-btn-close with data-dismiss props set to modal ", () => {
+          let closeElements = shallowResult.find('a').findWhere(x => x.props().className.includes('dn-btn-close'));
+          closeElements.forEach((element) => {
+              expect(element.node.props['data-dismiss']).to.be.equal('modal');
+          });
+      });
 
   });
 

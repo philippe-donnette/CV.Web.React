@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SkillModal from './skill-modal';
+import $ from 'jquery';
 
 class TagCloud extends Component {
     

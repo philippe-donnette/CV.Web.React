@@ -4,7 +4,6 @@ import Modal from './modal';
 class ErrorModal extends Component {
     
     render() {
-
         return (
             <Modal 
                 title={this.props.title} 

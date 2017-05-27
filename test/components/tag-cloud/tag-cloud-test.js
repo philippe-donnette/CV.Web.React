@@ -2,7 +2,9 @@ import React from 'react';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import TagCloud from '../../../src/components/tag-cloud/tag-cloud';
+import SkillModal from '../../../src/components/tag-cloud/skill-modal';
 import sinon from 'sinon';
+import $ from 'jquery';
 
 describe("src/components/tag-cloud/tag-cloud.jsx", function() {
   
@@ -18,16 +20,20 @@ describe("src/components/tag-cloud/tag-cloud.jsx", function() {
   describe('Main Tests', () => {
 
       beforeEach(() => {
-          openTagStub = sinon.stub(TagCloud.prototype, 'openTag').callsFake((tag) => {});
-          shallowResult = shallow(<TagCloud isInContainer={false} items={tags} />);
+            openTagStub = sinon.stub(TagCloud.prototype, 'openTag').callsFake((tag) => {});
+            shallowResult = shallow(<TagCloud isInContainer={false} items={tags} />);
       });
-    
+
       afterEach(() => {
         TagCloud.prototype.openTag.restore();
       });
 
       it("renders correct component", () => {
           expect(TagCloud.prototype).to.not.be.null;    
+      });
+
+      it("renders a SkillModal component", () => {
+          expect(SkillModal.prototype).to.not.be.null;    
       });
 
       it("renders ul without class well", () => {
