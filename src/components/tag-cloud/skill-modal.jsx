@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ErrorModal from '../modal/error-modal';
 import Modal from '../modal/modal';
+import SkillRatings from './skill-ratings';
 
 class SkillModal extends Component {
     render() {
@@ -15,9 +16,9 @@ class SkillModal extends Component {
                     <div className="row">
                         <div className="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                             <ul className="list-unstyled">
-                                <li>Experience: TODO RATINGS OUT OF 10 (this.props.skill.experienceRating)</li>
-                                <li>Usage: TODO RATINGS OUT OF 10 (this.props.skill.usageRating)</li>
-                                <li>Interest: TODO RATINGS OUT OF 10 (this.props.skill.interestRating)</li>
+                                <li>Experience: <SkillRatings max={10} rating={this.props.skill.experienceRating} /></li>
+                                <li>Usage: <SkillRatings max={10} rating={this.props.skill.usageRating} /></li>
+                                <li>Interest: <SkillRatings max={10} rating={this.props.skill.interestRating} /></li>
                                 <li>Version: TODO VERSIONS (this.props.skill.versions)</li>
                             </ul>
                         </div>
