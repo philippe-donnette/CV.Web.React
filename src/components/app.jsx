@@ -6,6 +6,7 @@ import Header from './header';
 import Footer from './footer';
 import Home from './home';
 import Skills from './skills';
+import Qualifications from './qualifications';
 import Projects from './projects';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory';
@@ -33,6 +34,7 @@ export class App extends Component {
                         <Route exact path="/" component={Home} person={this.props.person} />
                         <Route path="/skills" component={Skills} />
                         <Route path="/projects" component={Projects} />
+                        <Route path="/qualifications-training" component={Qualifications} />
                     </div>
                     <Footer 
                         fullName={this.props.person.firstname + ' ' + this.props.person.lastname} 

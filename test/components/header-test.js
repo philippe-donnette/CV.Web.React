@@ -31,7 +31,7 @@ describe("src/components/header.jsx", function() {
     });
     expect(navLinks['/']).to.be.equal('Home');
     expect(navLinks['/skills']).to.be.equal('Skills');
-    expect(navLinks['/qualifications']).to.be.equal('Qualifications');
+    expect(navLinks['/qualifications-training']).to.be.equal('Qualifications');
     expect(navLinks['/experience']).to.be.equal('Experience');
     expect(navLinks['/about']).to.be.equal('About Me');
   });

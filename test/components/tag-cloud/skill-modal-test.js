@@ -5,6 +5,7 @@ import SkillModal from '../../../src/components/tag-cloud/skill-modal';
 import Modal from '../../../src/components/modal/modal';
 import ErrorModal from '../../../src/components/modal/error-modal';
 import SkillRatings from '../../../src/components/tag-cloud/skill-ratings';
+import SkillVersions from '../../../src/components/tag-cloud/skill-versions';
 import sinon from 'sinon';
 
 describe("src/components/tag-cloud/skill-modal.jsx", function() {
@@ -31,6 +32,10 @@ describe("src/components/tag-cloud/skill-modal.jsx", function() {
 
       it("renders a SkillRatings component", () => {
           expect(SkillRatings.prototype).to.not.be.null;    
+      });
+
+      it("renders a SkillVersions component", () => {
+          expect(SkillVersions.prototype).to.not.be.null;    
       });
 
       it("renders a SkillRatings component three times", () => {          

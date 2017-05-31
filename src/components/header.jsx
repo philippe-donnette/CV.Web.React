@@ -20,7 +20,7 @@ class Header extends Component {
                     <ul className="nav navbar-nav">
                         <li className="hidden-sm hidden-xs navlink-wrapper"><NavLink exact to="/"><i className="fa fa-home"></i> Home</NavLink></li>
                         <li className="navlink-wrapper"><NavLink to="/skills"><i className="glyphicon glyphicon-wrench hidden-sm"></i> Skills</NavLink></li>
-                        <li className="navlink-wrapper"><NavLink to="/qualifications"><i className="glyphicon glyphicon-education hidden-sm"></i> Qualifications</NavLink></li>
+                        <li className="navlink-wrapper"><NavLink to="/qualifications-training"><i className="glyphicon glyphicon-education hidden-sm"></i> Qualifications</NavLink></li>
                         <li className="navlink-wrapper"><NavLink to="/experience"><i className="fa fa-lightbulb-o hidden-sm"></i> Experience</NavLink></li>
                         <li className="dropdown navlink-wrapper">
                             <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
