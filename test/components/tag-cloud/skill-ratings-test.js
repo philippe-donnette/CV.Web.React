@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import SkillRatings from '../../../src/components/tag-cloud/skill-ratings';
 import sinon from 'sinon';
 
-describe("src/components/tag-cloud/tag-cloud.jsx", function() {
+describe("src/components/tag-cloud/skill-ratings.jsx", function() {
   
   let shallowResult, props, getRatingsSpy; 
 
