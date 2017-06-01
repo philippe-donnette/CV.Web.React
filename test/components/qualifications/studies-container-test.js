@@ -2,6 +2,7 @@ import React from 'react';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import { StudiesContainer } from '../../../src/components/qualifications/studies-container';
+import StudyItem from '../../../src/components/qualifications/study-item';
 import sinon from 'sinon';
 import configureMockStore from 'redux-mock-store';
 
@@ -28,6 +29,10 @@ describe("src/components/qualifications/studies-container.jsx", function() {
 
       it("renders correct component", () => {
             expect(StudiesContainer.prototype).to.not.be.null;    
+      });
+
+      it("renders as many StudyItem components as studies props length", () => {
+            expect(shallowResult.find(StudyItem).length).to.be.equal(studies.length);    
       });
 
       it("calls getStudies", () => {

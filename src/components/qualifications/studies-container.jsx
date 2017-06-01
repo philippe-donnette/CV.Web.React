@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import actions from '../../redux/actions/index';
+import StudyItem from './study-item';
 
 export class StudiesContainer extends Component {
     
@@ -11,10 +12,15 @@ export class StudiesContainer extends Component {
     
     render() {
         return (
-            <div>
+            <div className="row dn-qualifications well">
+                <div className="row">
+                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <h2>Studies</h2>
+                    </div>
+                </div>
                 {
                     this.props.studies.map((item) => {
-                        return (<div key={item.id}>{item.schoolName}</div>);
+                        return (<StudyItem key={item.id} study={item} />);
                     })
                 }
             </div>
