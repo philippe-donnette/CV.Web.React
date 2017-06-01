@@ -1,13 +1,37 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import actions from '../../redux/actions/index';
 
-class StudiesContainer extends Component {
+export class StudiesContainer extends Component {
+    
+    componentWillMount() {
+        this.props.actions.getStudies();
+    }
+    
     render() {
         return (
             <div>
-                List of studies to go here
+                {
+                    this.props.studies.map((item) => {
+                        return (<div key={item.id}>{item.schoolName}</div>);
+                    })
+                }
             </div>
         );
     }
 }
 
-export default StudiesContainer;
+function mapStateToProps(state) {
+    return { 
+        studies: state.studies
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        actions: bindActionCreators(actions, dispatch)
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(StudiesContainer);

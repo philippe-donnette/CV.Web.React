@@ -10,7 +10,8 @@ let initialState = {
     settings: {
         apiBaseURI: apiBaseURI
     },
-    skills: []
+    skills: [],
+    studies: []
 };
 
 export default initialState;

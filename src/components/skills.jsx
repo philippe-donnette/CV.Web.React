@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PageHeader from './header/page-header';
 import TagCloud from './tag-cloud/tag-cloud';
-import SkillService from '../services/skill-service';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import actions from '../redux/actions/index';
