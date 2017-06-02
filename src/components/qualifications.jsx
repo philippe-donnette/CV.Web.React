@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PageHeader from './header/page-header';
 import StudiesContainer from './qualifications/studies-container';
+import TrainingsContainer from './qualifications/trainings-container';
 
 class Qualifications extends Component {
     render() {
@@ -12,7 +13,7 @@ class Qualifications extends Component {
             <div>
                 <PageHeader iconClass="glyphicon glyphicon-education" breadcrumbItems={breadcrumbItems}>Qualifications</PageHeader>
                 <StudiesContainer />
-                (Training component)
+                <TrainingsContainer />
             </div>
         );
     }
