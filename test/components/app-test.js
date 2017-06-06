@@ -5,6 +5,11 @@ import Home from '../../src/components/home';
 import Header from '../../src/components/header';
 import Footer from '../../src/components/footer';
 import Skills from '../../src/components/skills';
+import Experience from '../../src/components/experience';
+import Projects from '../../src/components/projects';
+import Project from '../../src/components/project';
+import AboutMe from '../../src/components/about-me';
+import Qualifications from '../../src/components/qualifications';
 import { Route } from 'react-router';
 import configureMockStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
@@ -57,6 +62,13 @@ describe("src/components/app.jsx", function() {
 
       expect(pathMap['/']).to.be.equal(Home);
       expect(pathMap['/skills']).to.be.equal(Skills);
+      expect(pathMap['/experience']).to.be.equal(Experience);
+      expect(pathMap['/qualifications-training']).to.be.equal(Qualifications);
+      expect(pathMap['/projects']).to.be.equal(Projects);
+      expect(pathMap['/projects/:name/:id']).to.be.equal(Project);
+      expect(typeof pathMap['/projects/ProjectA/1']).to.be.equal('undefined');
+      expect(typeof pathMap['/projects/ProjectB/2']).to.be.equal('undefined');
+      expect(pathMap['/about']).to.be.equal(AboutMe);
     });
 
     it("calls getProjects", () => {

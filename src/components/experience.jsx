@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PageHeader from './header/page-header';
 
-class Projects extends Component {
+class Experience extends Component {
     render() {
         let breadcrumbItems = [
             { iconClass: 'fa fa-home', title: 'Home', path: '/' }
@@ -9,10 +9,10 @@ class Projects extends Component {
 
         return (
             <div>
-                <PageHeader iconClass="fa fa-suitcase" breadcrumbItems={breadcrumbItems}>Projects</PageHeader>
+                <PageHeader iconClass="fa fa-lightbulb-o" breadcrumbItems={breadcrumbItems}>Experience</PageHeader>
             </div>
         );
     }
 }
 
-export default Projects;
+export default Experience;
