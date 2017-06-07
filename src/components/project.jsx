@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PageHeader from './header/page-header';
+import ErrorNotFound from './error/error-not-found';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import actions from '../redux/actions/index';
@@ -12,7 +13,7 @@ export class Project extends Component {
         ];
 
         if (this.props.project === null) {
-            return (<div>Project could not be found</div>);
+            return (<ErrorNotFound>Project could not be found</ErrorNotFound>);
         }
 
         return (
