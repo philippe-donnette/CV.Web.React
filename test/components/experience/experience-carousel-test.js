@@ -1,15 +1,19 @@
 import React from 'react';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
-import ExperienceCarousel from '../../../src/components/experience/experience-carousel';
+import { ExperienceCarousel } from '../../../src/components/experience/experience-carousel';
 import sinon from 'sinon';
 
 describe("src/components/experience/experience-carousel.jsx", function() {
   
-  let shallowResult; 
+  let shallowResult, actions, expeiences; 
 
   beforeEach(() => {
-    shallowResult = shallow(<ExperienceCarousel />);
+    actions = {
+      getExperiences: sinon.spy()
+    };
+    expeiences = [];
+    shallowResult = shallow(<ExperienceCarousel actions={actions} experiences={expeiences} />);
   });
   
   it("renders correct component", () => {
