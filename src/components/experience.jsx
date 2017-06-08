@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PageHeader from './header/page-header';
+import ExperienceCarousel from './experience/experience-carousel';
 
 class Experience extends Component {
     render() {
@@ -10,6 +11,7 @@ class Experience extends Component {
         return (
             <div>
                 <PageHeader iconClass="fa fa-lightbulb-o" breadcrumbItems={breadcrumbItems}>Experience</PageHeader>
+                <ExperienceCarousel />
             </div>
         );
     }

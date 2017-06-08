@@ -12,7 +12,8 @@ let initialState = {
     },
     skills: [],
     studies: [],
-    trainings: []
+    trainings: [],
+    experiences: []
 };
 
 export default initialState;
