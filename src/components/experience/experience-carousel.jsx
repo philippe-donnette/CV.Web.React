@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import actions from '../../redux/actions/index';
 import CarouselIndicators from '../carousel/carousel-indicators';
+import ExperienceCarouselSlide from './experience-carousel-slide';
 
 export class ExperienceCarousel extends Component {
     
@@ -21,7 +22,7 @@ export class ExperienceCarousel extends Component {
 
     render() {
 
-        let carouselIndicators = null;
+        let carouselIndicators = null, carouselLeftControl = null, carouselRightControl = null, slides = [], i = 0;
         if (this.props.experiences !== null && this.props.experiences.length > 0) {
             carouselIndicators = (
                 <CarouselIndicators 
@@ -31,6 +32,29 @@ export class ExperienceCarousel extends Component {
                     items={this.props.experiences}
                 />
             );
+            carouselLeftControl = (
+                <a role="button" href="#myCarousel" className="left dn-experience-control" data-slide="prev">
+                    <span aria-hidden="true" className="glyphicon glyphicon-chevron-left"></span>
+                    <span className="sr-only">previous</span>
+                </a>
+            );
+            carouselRightControl = (
+                <a role="button" href="#myCarousel" className="right dn-experience-control" data-slide="next">
+                    <span aria-hidden="true" className="glyphicon glyphicon-chevron-right"></span>
+                    <span className="sr-only">next</span>
+                </a>
+            );
+        }
+
+        for (i = 0; i < this.props.experiences.length; i++) {
+            slides.push(
+                <ExperienceCarouselSlide 
+                    key={this.props.experiences[i].id} 
+                    experience={this.props.experiences[i]} 
+                    active={this.state.selected === null ? (i === 0 ? true : false) : this.state.selected === this.props.experiences[i].id}
+                    classNameSuffix={i % 2 === 0 ? 'even' : 'odd'} 
+                />
+            );
         }
 
         return (
@@ -38,28 +62,13 @@ export class ExperienceCarousel extends Component {
 
                 {carouselIndicators}
 
-                <div className="carousel-inner">
-                    <div className="item active">
-                        <img src="la.jpg" alt="Los Angeles" />
-                    </div>
-
-                    <div className="item">
-                        <img src="chicago.jpg" alt="Chicago" />
-                    </div>
-
-                    <div className="item">
-                        <img src="ny.jpg" alt="New York" />
-                    </div>
+                <div className="dn-experience-inner">
+                    {slides}
                 </div>
 
-                <a className="left carousel-control" href="#myCarousel" data-slide="prev">
-                    <span className="glyphicon glyphicon-chevron-left"></span>
-                    <span className="sr-only">Previous</span>
-                </a>
-                <a className="right carousel-control" href="#myCarousel" data-slide="next">
-                    <span className="glyphicon glyphicon-chevron-right"></span>
-                    <span className="sr-only">Next</span>
-                </a>
+                {carouselLeftControl}
+                {carouselRightControl}
+                
             </div>
         );
     }
