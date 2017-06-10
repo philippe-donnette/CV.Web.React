@@ -38,12 +38,12 @@ export class ExperienceCarouselSlide extends Component {
                 </div>
                 <div className="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                     <div className="row">
-                        <div className="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+                        <div className="col-lg-7 col-md-7 col-sm-7 col-xs-12 text-center">
                             <h3 className="dn-experience-h3" alt={this.props.experience.roleTitle} title={this.props.experience.roleTitle}>
                                 <i className="fa fa-black-tie"></i> {this.props.experience.roleTitle}
                             </h3>
                         </div>
-                        <div className="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                        <div className="col-lg-5 col-md-5 col-sm-5 col-xs-12 text-center">
                             <h4 className="dn-h4 dn-experience-h4">
                                 <i className="fa fa-calendar"></i> {moment(this.props.experience.startDate).format('MMM YYYY')} - {this.props.experience.endDate == null ? 'Present' : moment(this.props.experience.endDate).format('MMM YYYY')} <i className="fa fa-calendar"></i>
                             </h4>

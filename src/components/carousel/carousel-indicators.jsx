@@ -7,20 +7,20 @@ class CarouselIndicators extends Component {
     }
     
     render() {
-        let selected = this.props.selected === null ? this.props.items[0].id : this.props.selected;
+        let indicators = [], i = 0;
+
+        for (i = 0; i < this.props.items.length; i++) {
+            let isActive = this.props.selected === i;
+            indicators.push(
+                <li key={this.props.items[i].id} className={isActive ? 'active' : ''} onClick={this.props.onChange.bind(this, i)}>
+                    <span className="sr-only">{this.props.items[i].id}</span>
+                </li>
+            );
+        }
 
         return (
             <ol className="dn-experience-indicators">
-                {
-                    this.props.items.map((item) => {
-                        let isActive = selected === item.id;
-                        return (
-                            <li key={item.id} className={isActive ? 'active' : ''} onClick={this.props.onChange.bind(this, item.id)}>
-                                <span className="sr-only">{item.id}</span>
-                            </li>
-                        );
-                    })
-                }
+                {indicators}
             </ol>
         );
     }
