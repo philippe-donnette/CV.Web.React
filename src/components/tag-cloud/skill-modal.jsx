@@ -6,11 +6,12 @@ import SkillVersions from './skill-versions';
 
 class SkillModal extends Component {
     render() {
+        console.log('REFRESH SKILL MODAL');
         if (typeof this.props.skill !== 'undefined' && this.props.skill !== null) {
             const htmlDescription = { __html: this.props.skill.description };
             return (
                 <Modal 
-                    modalId="skill-modal-id" 
+                    modalId={this.props.modalId} 
                     title={this.props.skill.name} 
                     titleIconClass={this.props.skill.iconClass}
                 >    
@@ -28,13 +29,12 @@ class SkillModal extends Component {
                         </div>
                     </div>
                     <div className="well" dangerouslySetInnerHTML={htmlDescription}>
-                        
                     </div>
                 </Modal>
             );
         } else {
             return (
-                <ErrorModal modalId="skill-modal-id" title="Error">Skill not found</ErrorModal>
+                <ErrorModal modalId={this.props.modalId} title="Error">Skill not found</ErrorModal>
             );
         }
     }

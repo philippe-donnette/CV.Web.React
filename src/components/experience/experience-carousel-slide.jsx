@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import moment from 'moment';
+import TagCloud from '../tag-cloud/tag-cloud';
 
 export class ExperienceCarouselSlide extends Component {
     
@@ -61,9 +62,12 @@ export class ExperienceCarouselSlide extends Component {
                     <hr className="dn-star-light dn-experience-star-light" />
                 </div>
                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-                    {
-                        // <dn-tag-cloud tags="job.skills" container="true"></dn-tag-cloud> 
-                    }
+                    <TagCloud 
+                        items={this.props.experience.skills} 
+                        isInContainer={true} 
+                        modalId="skill-modal-experience" 
+                        onTagClicked={this.props.onSkillClicked.bind(this)} 
+                    />
                 </div>
             </div>
         );

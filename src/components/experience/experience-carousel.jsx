@@ -4,12 +4,14 @@ import { bindActionCreators } from 'redux';
 import actions from '../../redux/actions/index';
 import CarouselIndicators from '../carousel/carousel-indicators';
 import ExperienceCarouselSlide from './experience-carousel-slide';
+import SkillModal from '../tag-cloud/skill-modal';
+import $ from 'jquery';
 
 export class ExperienceCarousel extends Component {
     
     constructor(props) {
         super(props);
-        this.state = { selected: 0 };
+        this.state = { selected: 0, skill: null };
     }
 
     componentWillMount() {
@@ -29,6 +31,15 @@ export class ExperienceCarousel extends Component {
              value = 0;
          }
          this.setState({ selected: value });
+     }
+
+     openSkill(skill) {
+         this.setState(
+            { skill: skill }, 
+            () => { 
+                $('#skill-modal-experience').modal('show');
+            }
+        );
      }
 
     render() {
@@ -64,6 +75,7 @@ export class ExperienceCarousel extends Component {
                     experience={this.props.experiences[i]} 
                     active={this.state.selected === i}
                     classNameSuffix={i % 2 === 0 ? 'even' : 'odd'} 
+                    onSkillClicked={this.openSkill.bind(this)}
                 />
             );
         }
@@ -80,6 +92,8 @@ export class ExperienceCarousel extends Component {
                 {carouselLeftControl}
                 {carouselRightControl}
                 
+                <SkillModal skill={this.state.skill} modalId="skill-modal-experience" />
+
             </div>
         );
     }
