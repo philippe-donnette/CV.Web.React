@@ -6,7 +6,6 @@ import SkillVersions from './skill-versions';
 
 class SkillModal extends Component {
     render() {
-        console.log('REFRESH SKILL MODAL');
         if (typeof this.props.skill !== 'undefined' && this.props.skill !== null) {
             const htmlDescription = { __html: this.props.skill.description };
             return (

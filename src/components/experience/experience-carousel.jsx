@@ -22,7 +22,7 @@ export class ExperienceCarousel extends Component {
         this.setState({ selected: index });
     }
 
-     onCarouselControlChange(incrementValue) {
+    onCarouselControlChange(incrementValue) {
          let value = this.state.selected + (incrementValue);
          if (value === -1) {
             value = this.props.experiences.length - 1;

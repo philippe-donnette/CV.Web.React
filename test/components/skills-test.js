@@ -6,6 +6,7 @@ import PageHeader from '../../src/components/header/page-header';
 import TagCloud from '../../src/components/tag-cloud/tag-cloud';
 import configureMockStore from 'redux-mock-store';
 import sinon from 'sinon';
+import SkillModal from '../../src/components/tag-cloud/skill-modal'; 
 
 describe("src/components/skills.jsx", function() {
   
@@ -26,6 +27,13 @@ describe("src/components/skills.jsx", function() {
   
   it("renders correct component", () => {
     expect(Skills.prototype).to.not.be.null;    
+  });
+
+  it("renders SkillModal component", () => {
+    expect(SkillModal.prototype).to.not.be.null;
+    let component = shallowResult.find(SkillModal);
+    expect(component.length).to.be.equal(1);    
+    expect(component.props().modalId).to.be.equal('skill-modal-main');        
   });
 
   it("renders PageHeader component", () => {
@@ -54,6 +62,14 @@ describe("src/components/skills.jsx", function() {
 
   it("calls getSkills", () => {
     expect(getSkillsSpy.calledOnce).to.be.equal(true);
+  });
+
+  it("SkillModal skill to change when skill state change", () => {
+    shallowResult.setState({ skill: skills[1] });
+    let component = shallowResult.find(SkillModal);    
+    expect(component.props().skill).to.not.be.null;
+    expect(component.props().skill.name).to.be.equal(skills[1].name);
+    expect(component.props().skill.id).to.be.equal(skills[1].id);
   });
 
 });
