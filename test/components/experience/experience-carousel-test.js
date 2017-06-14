@@ -5,13 +5,15 @@ import { ExperienceCarousel } from '../../../src/components/experience/experienc
 import sinon from 'sinon';
 import SkillModal from '../../../src/components/tag-cloud/skill-modal'; 
 import CarouselIndicators from '../../../src/components/carousel/carousel-indicators'; 
+import ExperienceCarouselSlide from '../../../src/components/experience/experience-carousel-slide'; 
 
 describe("src/components/experience/experience-carousel.jsx", function() {
   
-  let shallowResult, actions, experiences, skills, onCarouselControlChangeStub; 
+  let shallowResult, actions, experiences, skills, onCarouselControlChangeStub, openSkillStub; 
 
   beforeEach(() => {
-    onCarouselControlChangeStub = sinon.stub(ExperienceCarousel.prototype, 'onCarouselControlChange').callsFake((inc) => { return inc; })
+    openSkillStub = sinon.stub(ExperienceCarousel.prototype, 'openSkill').callsFake((something) => { return null; });
+    onCarouselControlChangeStub = sinon.stub(ExperienceCarousel.prototype, 'onCarouselControlChange').callsFake((inc) => { return inc; });
     actions = {
       getExperiences: sinon.spy()
     };
@@ -29,6 +31,7 @@ describe("src/components/experience/experience-carousel.jsx", function() {
   
   afterEach(() => {
     ExperienceCarousel.prototype.onCarouselControlChange.restore();
+    ExperienceCarousel.prototype.openSkill.restore();
   });
 
   it("renders correct component", () => {
@@ -93,6 +96,44 @@ describe("src/components/experience/experience-carousel.jsx", function() {
     shallowResult.setState({ selected: 23 });
     let component = shallowResult.find(CarouselIndicators);
     expect(component.props().selected).to.be.equal(23);
+  });
+
+  it("should increment selected when updateSelected is called", () => {
+    expect(ExperienceCarousel.prototype.updateSelected(1, 1, 3)).to.be.equal(2);
+  });
+
+  it("should decrement selected when updateSelected is called", () => {
+    expect(ExperienceCarousel.prototype.updateSelected(1, -1, 3)).to.be.equal(0);
+  });
+
+  it("should set selected back to 0 when updateSelected is called", () => {
+    expect(ExperienceCarousel.prototype.updateSelected(2, 1, 3)).to.be.equal(0);
+  });
+
+  it("should set selected back to 2 when updateSelected is called", () => {
+    expect(ExperienceCarousel.prototype.updateSelected(0, -1, 3)).to.be.equal(2);
+  });
+
+  it("should render as many ExperienceCarouselSlide component as prop experiences length", () => {
+    let component = shallowResult.find(ExperienceCarouselSlide);
+    expect(component.length).to.be.equal(experiences.length);    
+  });
+
+  it("should have only one active ExperienceCarouselSlide component", () => {
+    let component = shallowResult.find(ExperienceCarouselSlide).findWhere(x => x.props().active === true);
+    expect(component.length).to.be.equal(1);    
+  });
+
+  it("should have active ExperienceCarouselSlide component matched with selected state", () => {
+    shallowResult.setState({ selected: 2 });
+    let component = shallowResult.find(ExperienceCarouselSlide).findWhere(x => x.props().active === true);
+    expect(component.props().experience.name).to.be.equal(experiences[2].name);
+  });
+
+  it("should call openSkill when ExperienceCarouselSlide component onSkillClicked is called", () => {
+    let component = shallowResult.find(ExperienceCarouselSlide).findWhere(x => x.props().active === true);
+    component.simulate('skillClicked');
+    expect(openSkillStub.calledOnce).to.be.true;
   });
 
 });

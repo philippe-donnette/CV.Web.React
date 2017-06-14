@@ -23,14 +23,19 @@ export class ExperienceCarousel extends Component {
     }
 
     onCarouselControlChange(incrementValue) {
-         let value = this.state.selected + (incrementValue);
+         let newValue = this.updateSelected(this.state.selected, incrementValue, this.props.experiences.length);
+         this.setState({ selected: newValue });
+     }
+
+     updateSelected(selected, incrementValue, experiencesLength) {
+         let value = selected + (incrementValue);
          if (value === -1) {
-            value = this.props.experiences.length - 1;
+            value = experiencesLength - 1;
          }
-         if (value > this.props.experiences.length - 1) {
+         if (value > experiencesLength - 1) {
              value = 0;
          }
-         this.setState({ selected: value });
+         return value;
      }
 
      openSkill(skill) {
