@@ -29,6 +29,16 @@ describe("src/components/carousel/carousel-indicators.jsx", function() {
         expect(tags.length).to.be.equal(items.length);
       });
 
+      it("should have li tag with className active matching selected", () => {
+        let tags = shallowResult.find('li');
+        expect(tags.nodes[selected].props.className).to.be.equal('active');
+      });
+
+      it("should call onChange when click on li", () => {
+        let tag = shallowResult.find('li').first();
+        tag.simulate('click');
+        expect(onChangeSpy.withArgs(0).calledOnce).to.be.true;
+      });
   });
 
 });
