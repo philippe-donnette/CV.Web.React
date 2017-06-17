@@ -10,6 +10,14 @@ class ProjectService {
         });
         return fetch(request);
     }
+
+    getSkills(id) {
+        let request = new Request(`${this.baseURI}/api/project/${id}/skills`, {
+            mode: 'CORS',
+            method: 'GET'
+        });
+        return fetch(request);
+    }
 }
 
 export default ProjectService;

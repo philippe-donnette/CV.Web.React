@@ -1,4 +1,5 @@
 import SkillService from '../../services/skill-service';
+import ProjectService from '../../services/project-service';
 import actions from './index';
 
 let skillActions = {
@@ -25,6 +26,31 @@ let skillActions = {
         return (dispatch, getState) => {
             let config = getState().settings;
             dispatch(actions.fetchSkills(config));
+        };
+    },
+    loadProjectSkills: function (skills) {
+        return {
+            type: 'GET_PROJECT_SKILLS',
+            skills: skills
+        }
+    },
+    fetchProjectSkills: function (config, projectId) {
+        return (dispatch) => {
+            let projectService = new ProjectService(config.apiBaseURI);
+            projectService.getSkills(projectId)
+                .then((response) => {
+                    return response.json();
+                })
+                .then((data) => {
+                    dispatch(actions.loadProjectSkills(data));
+                })
+                .catch((error) => { throw (error); });
+        };
+    },
+    getProjectSkills: function (projectId) {
+        return (dispatch, getState) => {
+            let config = getState().settings;
+            dispatch(actions.fetchProjectSkills(config, projectId));
         };
     }
 }
