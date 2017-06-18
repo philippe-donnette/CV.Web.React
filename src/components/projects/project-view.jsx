@@ -1,14 +1,7 @@
 import React, { Component } from 'react';
 import TagCloud from '../tag-cloud/tag-cloud';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import actions from '../../redux/actions/index';
 
-export class ProjectView extends Component {
-    
-    componentWillMount() {
-        this.props.actions.getProjectSkills(this.props.project.id);
-    }
+class ProjectView extends Component {
     
     render() {
         const htmlDescription = { __html: this.props.project.description };
@@ -39,16 +32,4 @@ export class ProjectView extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return { 
-        skills: state.skills
-    };
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        actions: bindActionCreators(actions, dispatch)
-    };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProjectView);
+export default ProjectView;

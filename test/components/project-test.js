@@ -10,15 +10,18 @@ import SkillModal from '../../src/components/tag-cloud/skill-modal';
 
 describe("src/components/project.jsx", function() {
   
-  let shallowResult, match, project, openSkillStub; 
+  let shallowResult, match, project, openSkillStub, actions; 
 
   describe("Tests with projects not null", function() {
 
     beforeEach(() => {
+      actions = {
+        getProjectSkills: sinon.spy()
+      };
       openSkillStub = sinon.stub(Project.prototype, 'openSkill').callsFake((skill) => { return skill; });
       match = { params: { id: 1, name: 'ghostproject' } };
       project = { id: 1, name: 'ghostproject' };
-      shallowResult = shallow(<Project match={match} project={project} />);
+      shallowResult = shallow(<Project actions={actions} match={match} project={project} />);
     });
 
     afterEach(() => {
@@ -69,14 +72,25 @@ describe("src/components/project.jsx", function() {
       expect(shallowResult.state('skill').name).to.be.equal(component.props().skill.name);
     });
 
+    it("should call actions.getProjectSkills when project props change", () => {
+      expect(shallowResult.find(ProjectView).props().project.id).to.be.equal(project.id);
+      actions.getProjectSkills.reset();
+      shallowResult.setProps({ project: { id: 543, name: 'CV' } });
+      expect(shallowResult.find(ProjectView).props().project.id).to.be.equal(543);
+      expect(actions.getProjectSkills.calledOnce).to.be.true;
+    });
+
   });
 
   describe("Tests with projects null", function() {
 
     beforeEach(() => {
+      actions = {
+        getProjectSkills: sinon.spy()
+      };
       match = { params: { id: 1, name: 'ghostproject' } };
       project = null;
-      shallowResult = shallow(<Project match={match} project={project} />);
+      shallowResult = shallow(<Project actions={actions} match={match} project={project} />);
     });
     
     it("renders correct component", () => {

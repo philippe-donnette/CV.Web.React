@@ -15,15 +15,27 @@ export class Project extends Component {
         this.state = { skill: null };
     }
 
+    componentWillMount() {
+        if (this.props.project !== null) {
+            this.props.actions.getProjectSkills(this.props.project.id);
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.project !== null && this.props.project.id !== nextProps.project.id) {
+            this.props.actions.getProjectSkills(nextProps.project.id);
+        }
+    }
+
     openSkill(skill) {
         this.setState(
             { skill: skill }, 
             () => { 
-                $('#skill-modal-experience').modal('show');
+                $('#skill-modal-project').modal('show');
             }
         );
     }
-    
+
     render() {
         let breadcrumbItems = [
             { iconClass: 'fa fa-home', title: 'Home', path: '/' },
@@ -37,7 +49,11 @@ export class Project extends Component {
         return (
             <div>
                 <PageHeader iconClass="fa fa-suitcase" breadcrumbItems={breadcrumbItems}>{this.props.project.name}</PageHeader>
-                <ProjectView project={this.props.project} onSkillClicked={this.openSkill.bind(this)} />
+                <ProjectView 
+                    project={this.props.project} 
+                    onSkillClicked={this.openSkill.bind(this)} 
+                    skills={this.props.skills}
+                />
                 <SkillModal skill={this.state.skill} modalId="skill-modal-project" />
             </div>
         );
@@ -53,7 +69,8 @@ function mapStateToProps(state, ownProps) {
         project = matches[0];
     }
     return {
-        project: project
+        project: project,
+        skills: state.skills
     };
 }
 

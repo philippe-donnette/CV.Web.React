@@ -2,19 +2,16 @@ import React from 'react';
 import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import sinon from 'sinon';
-import { ProjectView } from '../../../src/components/projects/project-view'; 
+import ProjectView from '../../../src/components/projects/project-view'; 
 import TagCloud from '../../../src/components/tag-cloud/tag-cloud';
 
 describe("src/components/projects/project-view.jsx", function() {
   
-  let shallowResult, project, skills, onSkillClickedSpy, actions; 
+  let shallowResult, project, skills, onSkillClickedSpy; 
 
   describe("Main Tests", () => {
 
     beforeEach(() => {
-      actions = {
-        getProjectSkills: sinon.spy()
-      };
       onSkillClickedSpy = sinon.spy();
       skills = [
         { id: 1, name: 'sk1' },
@@ -23,7 +20,7 @@ describe("src/components/projects/project-view.jsx", function() {
         { id: 4, name: 'sk4' }
       ];
       project = { id: 1, name: 'proj1', primaryImage: 'some-image.png', description: 'This is a great description', skills: skills };
-      shallowResult = shallow(<ProjectView actions={actions} project={project} onSkillClicked={onSkillClickedSpy} />);
+      shallowResult = shallow(<ProjectView project={project} onSkillClicked={onSkillClickedSpy} />);
     });
     
     afterEach(() => {
