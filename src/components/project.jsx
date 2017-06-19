@@ -6,24 +6,27 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import actions from '../redux/actions/index';
 import SkillModal from './tag-cloud/skill-modal';
+import ImageGallery from './gallery/image-gallery';
 import $ from 'jquery';
 
 export class Project extends Component {
     
     constructor(props) {
         super(props);
-        this.state = { skill: null };
+        this.state = { skill: null, image: null };
     }
 
     componentWillMount() {
         if (this.props.project !== null) {
             this.props.actions.getProjectSkills(this.props.project.id);
+            this.props.actions.getProjectImages(this.props.project.id);
         }
     }
 
     componentWillReceiveProps(nextProps) {
         if (this.props.project !== null && this.props.project.id !== nextProps.project.id) {
             this.props.actions.getProjectSkills(nextProps.project.id);
+            this.props.actions.getProjectImages(nextProps.project.id);
         }
     }
 
@@ -32,6 +35,15 @@ export class Project extends Component {
             { skill: skill }, 
             () => { 
                 $('#skill-modal-project').modal('show');
+            }
+        );
+    }
+
+    openImage(image) {
+        this.setState(
+            { image: image }, 
+            () => { 
+                $('#image-modal-project').modal('show');
             }
         );
     }
@@ -54,6 +66,7 @@ export class Project extends Component {
                     onSkillClicked={this.openSkill.bind(this)} 
                     skills={this.props.skills}
                 />
+                <ImageGallery images={this.props.images} onImageClick={this.openImage.bind(this)} />
                 <SkillModal skill={this.state.skill} modalId="skill-modal-project" />
             </div>
         );
@@ -70,7 +83,8 @@ function mapStateToProps(state, ownProps) {
     }
     return {
         project: project,
-        skills: state.skills
+        skills: state.skills,
+        images: state.images
     };
 }
 

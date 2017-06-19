@@ -7,18 +7,21 @@ import ProjectView from '../../src/components/projects/project-view';
 import ErrorNotFound from '../../src/components/error/error-not-found';
 import sinon from 'sinon';
 import SkillModal from '../../src/components/tag-cloud/skill-modal';
+import ImageGallery from '../../src/components/gallery/image-gallery';
 
 describe("src/components/project.jsx", function() {
   
-  let shallowResult, match, project, openSkillStub, actions; 
+  let shallowResult, match, project, openSkillStub, actions, openImageStub; 
 
   describe("Tests with projects not null", function() {
 
     beforeEach(() => {
       actions = {
-        getProjectSkills: sinon.spy()
+        getProjectSkills: sinon.spy(),
+        getProjectImages: sinon.spy()
       };
       openSkillStub = sinon.stub(Project.prototype, 'openSkill').callsFake((skill) => { return skill; });
+      openImageStub = sinon.stub(Project.prototype, 'openImage').callsFake((image) => { return image; });
       match = { params: { id: 1, name: 'ghostproject' } };
       project = { id: 1, name: 'ghostproject' };
       shallowResult = shallow(<Project actions={actions} match={match} project={project} />);
@@ -26,6 +29,7 @@ describe("src/components/project.jsx", function() {
 
     afterEach(() => {
       Project.prototype.openSkill.restore();
+      Project.prototype.openImage.restore();
     });
     
     it("renders correct component", () => {
@@ -44,6 +48,11 @@ describe("src/components/project.jsx", function() {
 
     it("should render ProjectView component", () => {
       let component = shallowResult.find(ProjectView);
+      expect(component.length).to.be.equal(1);    
+    });
+
+    it("should render ImageGallery component", () => {
+      let component = shallowResult.find(ImageGallery);
       expect(component.length).to.be.equal(1);    
     });
 
@@ -79,6 +88,39 @@ describe("src/components/project.jsx", function() {
       expect(shallowResult.find(ProjectView).props().project.id).to.be.equal(543);
       expect(actions.getProjectSkills.calledOnce).to.be.true;
     });
+
+    it("should call openImage when onImageClick has been called", () => {
+      let component = shallowResult.find(ImageGallery);
+      component.simulate('imageClick', { id: 1, title: 'img1', imageUrl: 'img1.png' });
+      expect(openImageStub.calledOnce).to.be.true;
+      expect(openImageStub.args[0][0].id).to.be.equal(1);
+      expect(openImageStub.args[0][0].title).to.be.equal('img1');    
+    });
+
+    // it("should have a ImageModal component with modalId image-modal-project", () => {
+    //   let component = shallowResult.find(ImageModal);
+    //   expect(component.length).to.be.equal(1);
+    //   expect(component.props().modalId).to.be.equal('image-modal-project');
+    // });
+
+    it("should call actions.getProjectImages when project props change", () => {
+      expect(shallowResult.find(ProjectView).props().project.id).to.be.equal(project.id);
+      actions.getProjectImages.reset();
+      shallowResult.setProps({ project: { id: 543, name: 'CV' } });
+      expect(shallowResult.find(ProjectView).props().project.id).to.be.equal(543);
+      expect(actions.getProjectImages.calledOnce).to.be.true;
+    });
+
+    // it("should update image in ImageModal component when image state is updated", () => {
+    //   expect(shallowResult.state('image')).to.be.null;
+    //   let component = shallowResult.find(ImageModal);
+    //   expect(component.props().image).to.be.null;
+    //   shallowResult.setState({ image: { id: 89, title: 'img89' } });
+    //   expect(shallowResult.state('image')).to.not.be.null;
+    //   component = shallowResult.find(ImageModal);
+    //   expect(shallowResult.state('image').id).to.be.equal(component.props().image.id);
+    //   expect(shallowResult.state('image').name).to.be.equal(component.props().image.title);
+    // });
 
   });
 
