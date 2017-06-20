@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PageHeader from './header/page-header';
+import ImageProfile from './about/image-profile';
 
 class AboutMe extends Component {
     render() {
@@ -10,6 +11,9 @@ class AboutMe extends Component {
         return (
             <div>
                 <PageHeader iconClass="fa fa-user" breadcrumbItems={breadcrumbItems}>About Me</PageHeader>
+                <div class="row">
+                    <ImageProfile />
+                </div>
             </div>
         );
     }
