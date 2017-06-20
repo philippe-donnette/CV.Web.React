@@ -8,6 +8,7 @@ import ErrorNotFound from '../../src/components/error/error-not-found';
 import sinon from 'sinon';
 import SkillModal from '../../src/components/tag-cloud/skill-modal';
 import ImageGallery from '../../src/components/gallery/image-gallery';
+import ImageModal from '../../src/components/gallery/image-modal';
 
 describe("src/components/project.jsx", function() {
   
@@ -97,11 +98,11 @@ describe("src/components/project.jsx", function() {
       expect(openImageStub.args[0][0].title).to.be.equal('img1');    
     });
 
-    // it("should have a ImageModal component with modalId image-modal-project", () => {
-    //   let component = shallowResult.find(ImageModal);
-    //   expect(component.length).to.be.equal(1);
-    //   expect(component.props().modalId).to.be.equal('image-modal-project');
-    // });
+    it("should have a ImageModal component with modalId image-modal-project", () => {
+      let component = shallowResult.find(ImageModal);
+      expect(component.length).to.be.equal(1);
+      expect(component.props().modalId).to.be.equal('image-modal-project');
+    });
 
     it("should call actions.getProjectImages when project props change", () => {
       expect(shallowResult.find(ProjectView).props().project.id).to.be.equal(project.id);
@@ -111,16 +112,16 @@ describe("src/components/project.jsx", function() {
       expect(actions.getProjectImages.calledOnce).to.be.true;
     });
 
-    // it("should update image in ImageModal component when image state is updated", () => {
-    //   expect(shallowResult.state('image')).to.be.null;
-    //   let component = shallowResult.find(ImageModal);
-    //   expect(component.props().image).to.be.null;
-    //   shallowResult.setState({ image: { id: 89, title: 'img89' } });
-    //   expect(shallowResult.state('image')).to.not.be.null;
-    //   component = shallowResult.find(ImageModal);
-    //   expect(shallowResult.state('image').id).to.be.equal(component.props().image.id);
-    //   expect(shallowResult.state('image').name).to.be.equal(component.props().image.title);
-    // });
+    it("should update image in ImageModal component when image state is updated", () => {
+      expect(shallowResult.state('image')).to.be.null;
+      let component = shallowResult.find(ImageModal);
+      expect(component.props().image).to.be.null;
+      shallowResult.setState({ image: { id: 89, title: 'img89' } });
+      expect(shallowResult.state('image')).to.not.be.null;
+      component = shallowResult.find(ImageModal);
+      expect(shallowResult.state('image').id).to.be.equal(component.props().image.id);
+      expect(shallowResult.state('image').title).to.be.equal(component.props().image.title);
+    });
 
   });
 

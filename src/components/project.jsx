@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux';
 import actions from '../redux/actions/index';
 import SkillModal from './tag-cloud/skill-modal';
 import ImageGallery from './gallery/image-gallery';
+import ImageModal from './gallery/image-modal';
 import $ from 'jquery';
 
 export class Project extends Component {
@@ -68,6 +69,7 @@ export class Project extends Component {
                 />
                 <ImageGallery images={this.props.images} onImageClick={this.openImage.bind(this)} />
                 <SkillModal skill={this.state.skill} modalId="skill-modal-project" />
+                <ImageModal image={this.state.image} modalId="image-modal-project" />
             </div>
         );
     }

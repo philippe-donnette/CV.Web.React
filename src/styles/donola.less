@@ -1072,8 +1072,15 @@ li.navlink-wrapper > a.active {
     background-color: @navbar-default-link-active-bg !important;
 }
 
+.masonry-layout {
+  column-count: 7;
+  column-gap: 0;
+}
 .masonry-item {
-    display: inline-block;
-    padding:  .25rem;
-    width:  100%; 
+  break-inside: avoid;
+  padding: 0;
+}
+.masonry-item-content {
+  padding: 5px;
+  border-radius: 10px;
 }
