@@ -7,6 +7,7 @@ import projectsReducer from './project-reducer';
 import experiencesReducer from './experience-reducer';
 import settingsReducer from './settings-reducer';
 import personReducer from './person-reducer';
+import cardsReducer from './card-reducer';
 
 const rootReducer = combineReducers({
     images: imagesReducer,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
     projects: projectsReducer,
     experiences: experiencesReducer,
     settings: settingsReducer,
-    person: personReducer
+    person: personReducer,
+    cards: cardsReducer
 })
 
 export default rootReducer
