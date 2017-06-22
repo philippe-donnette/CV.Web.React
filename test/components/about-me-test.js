@@ -48,5 +48,12 @@ describe("src/components/about-me.jsx", function() {
   it("should have called getCards when componentDidMount", () => {    
     expect(actions.getCards.calledOnce).to.be.true;    
   });
+
+  it("should have called getCards when componentWillReceiveProps and cards prop changed", () => {    
+    actions.getCards.reset();
+    expect(actions.getCards.called).to.be.false;    
+    shallowResult.setProps({ cards: cards.push({ id: 26 }) });
+    expect(actions.getCards.calledOnce).to.be.true;    
+  });
   
 });

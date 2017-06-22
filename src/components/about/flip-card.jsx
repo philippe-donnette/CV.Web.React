@@ -26,10 +26,8 @@ class FlipCard extends Component {
         }
 
         return (
-            <div className="dn-flipcard-container" 
-                className={ this.props.card.rotate === 'x' ? 'dn-flipcard-container-rotate-x' : (this.props.card.rotate === 'y' ? 'dn-flipcard-container-rotate-y' : '')}>
-                <div className="dn-flipcard-card dn-flipcard-shadow" 
-                    className={ this.props.card.rotate === 'x' ? 'dn-flipcard-card-rotate-x' : (this.props.card.rotate === 'y' ? 'dn-flipcard-card-rotate-y' : '')}>
+            <div className={`dn-flipcard-container dn-flipcard-container-rotate-${this.props.card.rotate}`}>
+                <div className={`dn-flipcard-card dn-flipcard-shadow dn-flipcard-card-rotate-${this.props.card.rotate}`}>
                     <div className="dn-flipcard-face dn-flipcard-front">
                         {imageFront}
                         {textFront}
