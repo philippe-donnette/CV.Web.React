@@ -1,13 +1,13 @@
 import React from 'react';
 import { expect } from 'chai';
-import Header from '../../src/components/header';
+import { Header } from '../../src/components/header';
 import { shallow } from 'enzyme';
 import { NavLink } from 'react-router-dom';
 import ProjectNavLink from '../../src/components/navbar/project-navlink';
 
 describe("src/components/header.jsx", function() {
   
-  let wrapper, shallowResult, projects, githubUrl, linkedinUrl; 
+  let wrapper, shallowResult, projects, githubUrl, linkedinUrl, location; 
 
   beforeEach(() => {
     githubUrl = 'http://some-githuburl-passed-in-props';
@@ -17,7 +17,8 @@ describe("src/components/header.jsx", function() {
         { id: 'B2', name: 'ProjectB' },
         { id: 'C3', name: 'ProjectC' }
     ];
-    shallowResult = shallow(<Header projects={projects} githubUrl={githubUrl} linkedinUrl={linkedinUrl} />);
+    location = { pathname: '/abcd' };
+    shallowResult = shallow(<Header location={location} projects={projects} githubUrl={githubUrl} linkedinUrl={linkedinUrl} />);
   });
   
   it("renders correct component", () => {
@@ -69,5 +70,15 @@ describe("src/components/header.jsx", function() {
     expect(links['Linkedin']).to.be.equal(linkedinUrl);
     expect(links['Projects']).to.be.equal('#');
   });
+
+  // it("should not have project a href tag with active className", () => {
+  //   let link = shallowResult.find('a').findWhere(x => { 
+  //     if (typeof x.props().children !== 'undefined' && x.props().children !== null) {
+  //       return x.props().children.length === 3 && x.props().children[2] === ' Projects ';
+  //     }
+  //   });
+  //   debugger;
+  //   expect(link.props().className).to.not.contain('active');
+  // });
 
 });

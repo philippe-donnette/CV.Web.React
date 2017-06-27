@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, withRouter } from 'react-router-dom';
 import ProjectNavLink from './navbar/project-navlink';
 
-class Header extends Component {
+export class Header extends Component {
     render() {
+
+        let projectClassName = this.props.location.pathname.startsWith('/projects') ? ' active' : null;
+
         return (
             <nav className="navbar navbar-default navbar-fixed-top navbar-inner" role="navigation">
                 <div className="navbar-header">
@@ -23,7 +26,7 @@ class Header extends Component {
                         <li className="navlink-wrapper"><NavLink to="/qualifications-training"><i className="glyphicon glyphicon-education hidden-sm"></i> Qualifications</NavLink></li>
                         <li className="navlink-wrapper"><NavLink to="/experience"><i className="fa fa-lightbulb-o hidden-sm"></i> Experience</NavLink></li>
                         <li className="dropdown navlink-wrapper">
-                            <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <a href="#" className={`dropdown-toggle${projectClassName}`} data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                 <i className="fa fa-suitcase hidden-sm"></i> Projects <b className="caret"></b>
                             </a>
                             <ul className="dropdown-menu">
@@ -56,4 +59,4 @@ class Header extends Component {
     }
 }
 
-export default Header;
+export default withRouter(Header);
