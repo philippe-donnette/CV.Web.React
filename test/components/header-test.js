@@ -4,12 +4,16 @@ import { Header } from '../../src/components/header';
 import { shallow } from 'enzyme';
 import { NavLink } from 'react-router-dom';
 import ProjectNavLink from '../../src/components/navbar/project-navlink';
+import sinon from 'sinon';
 
 describe("src/components/header.jsx", function() {
   
-  let wrapper, shallowResult, projects, githubUrl, linkedinUrl, location; 
+  let wrapper, shallowResult, projects, githubUrl, linkedinUrl, location, stubNavLinkClicked; 
 
   beforeEach(() => {
+    stubNavLinkClicked = sinon.stub(Header.prototype, 'navLinkClicked').callsFake(x => {
+      return null;
+    });
     githubUrl = 'http://some-githuburl-passed-in-props';
     linkedinUrl = 'http://some-linkedinurl-passed-in-props';
     projects = [
@@ -21,6 +25,10 @@ describe("src/components/header.jsx", function() {
     shallowResult = shallow(<Header location={location} projects={projects} githubUrl={githubUrl} linkedinUrl={linkedinUrl} />);
   });
   
+  afterEach(() => {
+    Header.prototype.navLinkClicked.restore();
+  });
+
   it("renders correct component", () => {
     expect(Header.prototype).to.not.be.null;    
   });
@@ -71,14 +79,39 @@ describe("src/components/header.jsx", function() {
     expect(links['Projects']).to.be.equal('#');
   });
 
-  // it("should not have project a href tag with active className", () => {
-  //   let link = shallowResult.find('a').findWhere(x => { 
-  //     if (typeof x.props().children !== 'undefined' && x.props().children !== null) {
-  //       return x.props().children.length === 3 && x.props().children[2] === ' Projects ';
-  //     }
-  //   });
-  //   debugger;
-  //   expect(link.props().className).to.not.contain('active');
-  // });
+  it("should not have projects href tag with active className", () => {
+    let link = shallowResult.find('a').findWhere(x => { 
+      if (typeof x.props().children !== 'undefined' && x.props().children !== null) {
+        return x.props().children.length === 3 && x.props().children[1] === ' Projects ';
+      }
+    });
+    expect(link.props().className).to.not.contain('active');
+  });
+
+  it("should have project a href tag with active className", () => {
+    shallowResult.setProps({ location: { pathname: '/projects/anythingelse' } });
+    let link = shallowResult.find('a').findWhere(x => { 
+      if (typeof x.props().children !== 'undefined' && x.props().children !== null) {
+        return x.props().children.length === 3 && x.props().children[1] === ' Projects ';
+      }
+    });
+    expect(link.props().className).to.contain('active');
+  });
+
+  it("should call navLinkClicked when clicking on any ProjectNavLink components", () => {
+    shallowResult.find(ProjectNavLink).forEach((component) => {
+      stubNavLinkClicked.reset();
+      component.simulate('click');
+      expect(stubNavLinkClicked.calledOnce).to.be.true;
+    });
+  });
+
+  it("should call navLinkClicked when clicking on any NavLink components", () => {
+    shallowResult.find(NavLink).findWhere(x => typeof x.props().onClick !== 'undefined').forEach((component) => {
+      stubNavLinkClicked.reset();
+      component.simulate('click');
+      expect(stubNavLinkClicked.calledOnce).to.be.true;
+    });
+  });
 
 });

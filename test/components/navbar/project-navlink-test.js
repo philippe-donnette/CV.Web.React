@@ -3,14 +3,16 @@ import { expect } from 'chai';
 import { shallow } from 'enzyme';
 import { NavLink } from 'react-router-dom';
 import ProjectNavLink from '../../../src/components/navbar/project-navlink';
+import sinon from 'sinon';
 
 describe("src/components/navbar/project-navlink.jsx", function() {
   
-  let wrapper, shallowResult, project; 
+  let wrapper, shallowResult, project, spyOnClick; 
 
   beforeEach(() => {
+    spyOnClick = sinon.spy();
     project = { id: 'A1', name: 'ProjectA' };
-    shallowResult = shallow(<ProjectNavLink project={project} />);
+    shallowResult = shallow(<ProjectNavLink project={project} onClick={spyOnClick} />);
   });
   
   it("renders correct component", () => {
@@ -31,6 +33,12 @@ describe("src/components/navbar/project-navlink.jsx", function() {
   it("matches NavLink text with project name", () => {
     let navLinkText = shallowResult.find(NavLink).props().children;
     expect(navLinkText).to.be.equal(project.name);
+  });
+
+  it("should call onClick props function on NavLink onClick event called", () => {
+    let component = shallowResult.find(NavLink);
+    component.simulate('click');
+    expect(spyOnClick.calledOnce).to.be.true;
   });
 
 });
