@@ -13,3 +13,4 @@ import 'font-mfizz/font/font-mfizz.css';
 import './styles/css/devicons.css';
 import './styles/css/font-awesome.css';
 import './styles/donola.less';
+import 'devicon/devicon.css';
